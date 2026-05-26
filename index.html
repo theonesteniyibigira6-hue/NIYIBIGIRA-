@@ -1,165 +1,207 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>RTLH Academy | Rwanda Tech Learning Hub</title>
-  <meta name="description" content="Rwanda Tech Learning Hub - Empowering Rwanda's future through cutting-edge technology education, digital skills, music, arts, and professional development.">
-  <meta name="keywords" content="Rwanda, tech learning, online courses, certificates, programming, music, digital marketing, AI, cybersecurity">
+  <meta name="description" content="Rwanda Tech Learning Hub - Empowering Rwanda's future through cutting-edge technology education.">
+  <meta name="keywords" content="Rwanda, tech learning, online courses, certificates, AI chatbot">
+  <meta name="author" content="RTLH Academy">
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; overflow-x: hidden; background: #0a0a2a; color: #fff; }
-    #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
-    .gradient-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 30%, rgba(10,10,42,0.6), rgba(0,0,20,0.85)); z-index: -1; }
-    .main-container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; position: relative; z-index: 10; }
-    .navbar { background: rgba(15, 25, 55, 0.4); backdrop-filter: blur(15px); border-radius: 60px; padding: 0.8rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 2rem; border: 1px solid rgba(80,120,255,0.3); position: sticky; top: 1rem; z-index: 100; }
-    .logo { display: flex; align-items: center; gap: 0.8rem; }
-    .logo i { font-size: 2rem; color: #4d8eff; }
-    .logo h1 { font-size: 1.5rem; background: linear-gradient(135deg, #fff, #4d8eff); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .nav-menu { display: flex; flex-wrap: wrap; gap: 0.8rem; }
-    .nav-menu a { color: #eef5ff; text-decoration: none; font-weight: 500; padding: 0.5rem 1rem; border-radius: 30px; transition: all 0.3s; font-size: 0.85rem; cursor: pointer; }
-    .nav-menu a:hover, .nav-menu a.active { background: rgba(77,142,255,0.3); color: #7bc5ff; transform: scale(1.05); }
-    .btn-3d { background: linear-gradient(45deg, #2a6eff, #9747ff); border: none; padding: 10px 24px; border-radius: 40px; color: white; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 5px 0 #1a3a8a; }
-    .btn-3d:active { transform: translateY(3px); box-shadow: 0 2px 0 #1a3a8a; }
-    .btn-outline { background: transparent; border: 2px solid #4d8eff; padding: 8px 22px; border-radius: 40px; color: #4d8eff; transition: 0.3s; cursor: pointer; }
-    .btn-outline:hover { background: #4d8eff; color: white; }
-    .btn-glow { background: rgba(77,142,255,0.2); border: 1px solid #7bc5ff; box-shadow: 0 0 12px rgba(77,142,255,0.5); border-radius: 40px; padding: 8px 20px; color: white; cursor: pointer; transition: 0.3s; }
-    .btn-glow:hover { box-shadow: 0 0 20px #4d8eff; transform: translateY(-2px); }
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 1000; justify-content: center; align-items: center; }
-    .modal-content { background: linear-gradient(135deg, #0f1a3a, #0a0f2a); border-radius: 30px; padding: 2rem; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; border: 1px solid rgba(77,142,255,0.5); }
-    .modal-content input, .modal-content select, .modal-content textarea { width: 100%; padding: 0.8rem; margin: 0.5rem 0; background: rgba(255,255,255,0.1); border: 1px solid rgba(77,142,255,0.3); border-radius: 15px; color: white; }
-    .profile-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto; display: block; border: 3px solid #4d8eff; }
-    .course-row { display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem; align-items: center; }
-    .course-row.reverse { flex-direction: row-reverse; }
-    .course-image { flex: 1; min-width: 250px; }
-    .course-image img { width: 100%; border-radius: 25px; height: 250px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: 0.3s; }
-    .course-image img:hover { transform: scale(1.02); }
-    .course-info { flex: 1; padding: 1rem; }
-    .course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-    .course-card { background: rgba(20,30,55,0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 1.5rem; border: 1px solid rgba(100,150,255,0.3); transition: 0.3s; cursor: pointer; }
-    .course-card:hover { transform: translateY(-8px); border-color: #4d8eff; }
-    .progress-bar { height: 8px; background: rgba(255,255,255,0.2); border-radius: 10px; overflow: hidden; }
-    .progress-fill { height: 100%; background: linear-gradient(90deg, #2a6eff, #9747ff); width: 0%; transition: width 0.3s; }
-    .dashboard-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-    .stat-card { background: rgba(20,30,55,0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 1.5rem; text-align: center; transition: 0.3s; }
-    .page-image { width: 100%; height: 200px; object-fit: cover; border-radius: 30px; margin-bottom: 1.5rem; }
-    .section { padding: 2rem 0; border-bottom: 1px solid rgba(77,142,255,0.2); }
-    .section-title { font-size: 2rem; margin-bottom: 1.5rem; position: relative; display: inline-block; }
-    .section-title:after { content: ''; position: absolute; bottom: -10px; left: 0; width: 60%; height: 3px; background: linear-gradient(90deg, #3e8eff, #9b5eff); }
-    .hero { text-align: center; padding: 2rem 0; }
-    .hero h1 { font-size: 3rem; background: linear-gradient(135deg, #fff, #7bc5ff, #4d8eff); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .book-card, .video-card { background: rgba(20,30,55,0.6); border-radius: 20px; padding: 1rem; text-align: center; transition: 0.3s; }
-    .book-card img, .video-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; }
-    .chatbot { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
-    .chat-toggle { width: 65px; height: 65px; background: linear-gradient(45deg, #2a6eff, #9747ff); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; animation: pulse 2s infinite; overflow: hidden; }
-    .chat-toggle img { width: 100%; height: 100%; object-fit: cover; }
-    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(77,142,255,0.7); } 70% { box-shadow: 0 0 0 15px rgba(77,142,255,0); } 100% { box-shadow: 0 0 0 0 rgba(77,142,255,0); } }
-    .chat-window { position: absolute; bottom: 80px; right: 0; width: 380px; height: 520px; background: rgba(15,25,45,0.98); backdrop-filter: blur(15px); border-radius: 20px; display: none; flex-direction: column; border: 1px solid #4d8eff; overflow: hidden; }
-    .chat-header { padding: 1rem; background: linear-gradient(135deg, #2a6eff, #9747ff); display: flex; align-items: center; gap: 12px; }
-    .chat-header img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
-    .close-chat { background: rgba(255,255,255,0.2); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; }
-    .chat-messages { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.8rem; }
-    .message-bot { background: rgba(77,142,255,0.2); padding: 0.8rem; border-radius: 18px; border-bottom-left-radius: 4px; max-width: 85%; align-self: flex-start; }
-    .message-user { background: #2a6eff; padding: 0.8rem; border-radius: 18px; border-bottom-right-radius: 4px; max-width: 85%; align-self: flex-end; }
-    .chat-input-area { display: flex; padding: 1rem; gap: 0.5rem; border-top: 1px solid rgba(77,142,255,0.3); }
-    .chat-input-area input { flex: 1; padding: 0.7rem; border-radius: 25px; border: none; background: rgba(255,255,255,0.1); color: white; }
-    .admin-table { width: 100%; border-collapse: collapse; background: rgba(20,30,55,0.6); border-radius: 15px; overflow: hidden; }
-    .admin-table th, .admin-table td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(77,142,255,0.2); }
-    @media (max-width: 768px) { .main-container { padding: 0.5rem 1rem; } .hero h1 { font-size: 2rem; } .course-row { flex-direction: column; } .course-row.reverse { flex-direction: column; } .chat-window { width: 320px; height: 480px; } }
-  </style>
 </head>
 <body>
-<canvas id="canvas-bg"></canvas>
-<div class="gradient-overlay"></div>
-<div class="main-container">
-  <nav class="navbar">
-    <div class="logo"><i class="fas fa-chalkboard-user"></i><h1>RTLH Academy</h1></div>
-    <div class="nav-menu">
-      <a onclick="showPage('home')">Home</a><a onclick="showPage('courses')">Courses</a><a onclick="showPage('books')">Books</a>
-      <a onclick="showPage('explore')">Explore World</a><a onclick="showPage('opportunities')">Opportunities</a><a onclick="showPage('dashboard')">Dashboard</a>
-      <a onclick="showPage('profile')">Account</a><a onclick="showPage('community')">Community</a><a onclick="showPage('admin')" style="background:rgba(255,50,50,0.3);">Admin</a>
+  <canvas id="canvas-bg"></canvas>
+  <div class="gradient-overlay"></div>
+
+  <div class="main-container">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <i class="fas fa-chalkboard-user"></i>
+        <h1>RTLH Academy</h1>
+      </div>
+      <div class="nav-menu">
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('courses')">Courses</a>
+        <a onclick="showPage('books')">Books</a>
+        <a onclick="showPage('explore')">Explore World</a>
+        <a onclick="showPage('opportunities')">Opportunities</a>
+        <a onclick="showPage('dashboard')">Dashboard</a>
+        <a onclick="showPage('profile')">Account</a>
+        <a onclick="showPage('community')">Community</a>
+        <a onclick="showPage('admin')" class="admin-link">🔒 Admin</a>
+      </div>
+      <div>
+        <button onclick="showAuthModal()" id="authBtn" class="btn-3d">Login/Signup</button>
+        <span id="userNameDisplay" style="display:none; margin-left:10px;"></span>
+      </div>
+    </nav>
+
+    <!-- Pages -->
+    <div id="homePage" class="page">
+      <img src="https://picsum.photos/id/20/1200/400" class="page-image" alt="RTLH Campus">
+      <div class="hero">
+        <h1>RWANDA TECH LEARNING HUB</h1>
+        <p>Empowering Rwanda's future through technology education</p>
+        <button onclick="showPage('courses')" class="btn-3d" style="margin-top:2rem;">Start Learning Today</button>
+      </div>
+      <div class="section">
+        <h2 class="section-title">Featured Courses</h2>
+        <div class="course-grid" id="featuredCourses"></div>
+      </div>
     </div>
-    <div><button onclick="showAuthModal()" id="authBtn" class="btn-3d">Login/Signup</button><span id="userNameDisplay" style="display:none; margin-left:10px;"></span></div>
-  </nav>
 
-  <div id="homePage" class="page"><img src="https://picsum.photos/id/20/1200/400" class="page-image"><div class="hero"><h1>RWANDA TECH LEARNING HUB</h1><p>Empowering Rwanda's future through technology education</p><button onclick="showPage('courses')" class="btn-3d" style="margin-top:2rem;">Start Learning Today</button></div><div class="section"><h2 class="section-title">Featured Courses</h2><div class="course-grid" id="featuredCourses"></div></div></div>
-  <div id="coursesPage" class="page" style="display:none;"><img src="https://picsum.photos/id/0/1200/400" class="page-image"><div class="section"><h2 class="section-title">All Courses</h2><div id="allCoursesList"></div></div></div>
-  <div id="booksPage" class="page" style="display:none;"><img src="https://picsum.photos/id/24/1200/400" class="page-image"><div class="section"><h2 class="section-title">📚 Digital Library</h2><div class="course-grid" id="booksList"></div></div></div>
-  <div id="explorePage" class="page" style="display:none;"><img src="https://picsum.photos/id/42/1200/400" class="page-image"><div class="section"><h2 class="section-title">🌍 Explore the World</h2><div class="course-grid" id="exploreVideos"></div></div></div>
-  <div id="opportunitiesPage" class="page" style="display:none;"><img src="https://picsum.photos/id/26/1200/400" class="page-image"><div class="section"><h2 class="section-title">Opportunities Center</h2><div id="opportunitiesList"></div></div></div>
-  <div id="dashboardPage" class="page" style="display:none;"><div class="section"><h2 class="section-title">My Dashboard</h2><div class="dashboard-stats"><div class="stat-card"><h3>Enrolled</h3><h2 id="enrolledCount">0</h2></div><div class="stat-card"><h3>Completed</h3><h2 id="completedCount">0</h2></div><div class="stat-card"><h3>Certificates</h3><h2 id="certCount">0</h2></div></div><canvas id="progressChart" height="200" style="max-width:100%; background:rgba(255,255,255,0.05); border-radius:20px;"></canvas><div id="myCoursesList"></div></div></div>
-  <div id="profilePage" class="page" style="display:none;"><div class="section"><h2 class="section-title">My Profile</h2><div id="profileInfo"></div><button onclick="editProfile()" class="btn-outline">Edit Profile</button></div></div>
-  <div id="communityPage" class="page" style="display:none;"><div class="section"><h2>Community Hub</h2><div id="groupsList"></div><input type="text" id="newGroup" placeholder="New group name"><button onclick="createGroup()" class="btn-3d">Create Group</button></div></div>
-  <div id="adminPage" class="page" style="display:none;"><div class="section"><h2 class="section-title">🔐 Admin Dashboard</h2><div class="dashboard-stats"><div class="stat-card"><h3>Total Users</h3><h2 id="adminTotalUsers">0</h2></div><div class="stat-card"><h3>Certificates</h3><h2 id="adminTotalCerts">0</h2></div></div><div><h3>Users</h3><div id="adminUsersList"></div><h3>Chat Logs</h3><div id="adminChatLogs"></div></div></div></div>
-</div>
+    <div id="coursesPage" class="page" style="display:none;">
+      <img src="https://picsum.photos/id/0/1200/400" class="page-image" alt="Courses">
+      <div class="section">
+        <h2 class="section-title">All Courses</h2>
+        <div id="allCoursesList"></div>
+      </div>
+    </div>
 
-<div id="authModal" class="modal"><div class="modal-content"><h2>Create Account</h2><form id="authForm"><input type="text" id="fullName" placeholder="Full Name" required><input type="email" id="email" placeholder="Email" required><input type="tel" id="phone" placeholder="Phone"><select id="country"><option>Rwanda</option><option>USA</option><option>UK</option><option>Kenya</option><option>Nigeria</option></select><input type="password" id="password" placeholder="Password" required><input type="file" id="profilePhoto" accept="image/*"><button type="submit">Register</button></form></div></div>
-<div id="courseModal" class="modal"><div class="modal-content" id="courseModalContent"></div></div>
-<div id="certModal" class="modal"><div class="modal-content"><h1>RTLH ACADEMY</h1><h2>CERTIFICATE</h2><h3 id="certUserName"></h3><p>completed <strong id="certCourseName"></strong></p><button onclick="downloadCertificate()" class="btn-3d">Download</button></div></div>
+    <div id="booksPage" class="page" style="display:none;">
+      <img src="https://picsum.photos/id/24/1200/400" class="page-image" alt="Books">
+      <div class="section">
+        <h2 class="section-title">📚 Digital Library</h2>
+        <div class="course-grid" id="booksList"></div>
+      </div>
+    </div>
 
-<div class="chatbot"><div class="chat-toggle" onclick="toggleChat()"><img src="https://randomuser.me/api/portraits/men/32.jpg" id="chatAvatar"></div><div class="chat-window" id="chatWindow"><div class="chat-header"><img src="https://randomuser.me/api/portraits/men/32.jpg"><h3>Theo LearnWise AI</h3><button class="close-chat" onclick="toggleChat()">✕</button></div><div class="chat-messages" id="chatMessages"><div class="message-bot">👋 Hi! I'm Theo LearnWise. Ask me anything!</div></div><div class="chat-input-area"><input type="text" id="chatInput" placeholder="Type..."><button onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button></div></div></div>
+    <div id="explorePage" class="page" style="display:none;">
+      <img src="https://picsum.photos/id/42/1200/400" class="page-image" alt="Explore">
+      <div class="section">
+        <h2 class="section-title">🌍 Explore the World</h2>
+        <div class="course-grid" id="exploreVideos"></div>
+      </div>
+    </div>
 
-<script>
-// Complete Course Catalog with Images
-const fullCourseCatalog = [
-  { id:1, title:"Python Programming", category:"Programming", duration:"8 weeks", image:"https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400", desc:"Master Python from basics to advanced, including data structures, OOP, and real-world projects." },
-  { id:2, title:"Full Stack Web Dev", category:"Web", duration:"12 weeks", image:"https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400", desc:"Become a full-stack developer with HTML, CSS, JavaScript, React, Node.js, and MongoDB." },
-  { id:3, title:"Data Science & AI", category:"Data", duration:"12 weeks", image:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400", desc:"Learn data analysis, machine learning, deep learning, and generative AI." },
-  { id:4, title:"Cybersecurity", category:"Security", duration:"10 weeks", image:"https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400", desc:"Protect networks, ethical hacking, cryptography, and security best practices." },
-  { id:5, title:"Digital Marketing", category:"Marketing", duration:"6 weeks", image:"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400", desc:"SEO, social media, Google Ads, content marketing, and analytics." },
-  { id:6, title:"Piano Mastery", category:"Music", duration:"8 weeks", image:"https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=400", desc:"From beginner to advanced piano techniques, music theory, and performance." },
-  { id:7, title:"Graphic Design", category:"Design", duration:"6 weeks", image:"https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400", desc:"Adobe Photoshop, Illustrator, Canva, branding, and digital art." },
-  { id:8, title:"Leadership Skills", category:"Soft Skills", duration:"4 weeks", image:"https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400", desc:"Communication, team management, emotional intelligence, and decision making." },
-  { id:9, title:"Cloud Computing AWS", category:"Cloud", duration:"8 weeks", image:"https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400", desc:"AWS services, deployment, DevOps, and cloud architecture." },
-  { id:10, title:"Mobile Dev Flutter", category:"Mobile", duration:"8 weeks", image:"https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400", desc:"Build cross-platform iOS/Android apps with Flutter and Dart." },
-  { id:11, title:"English Communication", category:"Language", duration:"6 weeks", image:"https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400", desc:"Improve speaking, writing, business English, and public speaking." },
-  { id:12, title:"Teaching Methodology", category:"Education", duration:"6 weeks", image:"https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400", desc:"Lesson planning, classroom management, and digital teaching tools." }
-];
+    <div id="opportunitiesPage" class="page" style="display:none;">
+      <img src="https://picsum.photos/id/26/1200/400" class="page-image" alt="Opportunities">
+      <div class="section">
+        <h2 class="section-title">Opportunities Center</h2>
+        <div id="opportunitiesList"></div>
+      </div>
+    </div>
 
-const books = [{title:"Clean Code", author:"Robert Martin", image:"https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400", link:"#"},{title:"Python Crash Course", author:"Eric Matthes", image:"https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400", link:"#"},{title:"The Art of Leadership", author:"Maxwell", image:"https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400", link:"#"},{title:"Digital Marketing Bible", author:"Ryan Deiss", image:"https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400", link:"#"}];
-const exploreVideos = [{country:"Rwanda", video:"https://www.youtube.com/embed/atJZ2-R3j_Q", image:"https://images.unsplash.com/photo-1573802106853-97dda69b74ca?w=400"},{country:"Japan", video:"https://www.youtube.com/embed/OhJU-n-LO5Q", image:"https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=400"},{country:"Italy", video:"https://www.youtube.com/embed/SbPkB0E0O40", image:"https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400"},{country:"USA", video:"https://www.youtube.com/embed/ILhMnhJ0m8o", image:"https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=400"}];
+    <div id="dashboardPage" class="page" style="display:none;">
+      <div class="section">
+        <h2 class="section-title">My Dashboard</h2>
+        <div class="dashboard-stats">
+          <div class="stat-card"><h3>Enrolled</h3><h2 id="enrolledCount">0</h2></div>
+          <div class="stat-card"><h3>Completed</h3><h2 id="completedCount">0</h2></div>
+          <div class="stat-card"><h3>Certificates</h3><h2 id="certCount">0</h2></div>
+        </div>
+        <canvas id="progressChart" height="200" style="max-width:100%; background:rgba(255,255,255,0.05); border-radius:20px;"></canvas>
+        <div id="myCoursesList"></div>
+      </div>
+    </div>
 
-let users=[], userCoursesData={}, chatLogs=[], communityGroups=["Tech Learners","Music Artists"], currentUser=null;
-function saveAll(){localStorage.setItem('rtlh_users',JSON.stringify(users));localStorage.setItem('rtlh_usercourses',JSON.stringify(userCoursesData));localStorage.setItem('rtlh_chatlogs',JSON.stringify(chatLogs));localStorage.setItem('rtlh_groups',JSON.stringify(communityGroups));}
-function loadData(){const u=localStorage.getItem('rtlh_users');if(u)users=JSON.parse(u);const c=localStorage.getItem('rtlh_usercourses');if(c)userCoursesData=JSON.parse(c);const l=localStorage.getItem('rtlh_chatlogs');if(l)chatLogs=JSON.parse(l);const g=localStorage.getItem('rtlh_groups');if(g)communityGroups=JSON.parse(g);}
-function init(){loadData();const saved=localStorage.getItem('rtlh_current_user');if(saved){currentUser=JSON.parse(saved);if(!users.find(u=>u.email===currentUser.email))users.push(currentUser);saveAll();updateUIForUser();}renderAll();init3D();setChatAvatar();}
-function saveCurrentUser(){if(currentUser){localStorage.setItem('rtlh_current_user',JSON.stringify(currentUser));const idx=users.findIndex(u=>u.email===currentUser.email);if(idx>=0)users[idx]=currentUser;else users.push(currentUser);saveAll();}}
-function showAuthModal(){document.getElementById('authModal').style.display='flex';}
-document.getElementById('authForm').addEventListener('submit',(e)=>{e.preventDefault();currentUser={fullName:document.getElementById('fullName').value,email:document.getElementById('email').value,phone:document.getElementById('phone').value,country:document.getElementById('country').value,photo:null,registeredAt:new Date().toISOString()};const file=document.getElementById('profilePhoto').files[0];if(file){const reader=new FileReader();reader.onload=(ev)=>{currentUser.photo=ev.target.result;saveCurrentUser();};reader.readAsDataURL(file);}saveCurrentUser();document.getElementById('authModal').style.display='none';updateUIForUser();alert('Account created!');});
-function updateUIForUser(){document.getElementById('authBtn').style.display='none';document.getElementById('userNameDisplay').style.display='inline';document.getElementById('userNameDisplay').innerHTML=`👤 ${currentUser.fullName}`;updateDashboard();renderProfile();}
-function renderFeatured(){document.getElementById('featuredCourses').innerHTML=fullCourseCatalog.slice(0,4).map(c=>`<div class="course-card" onclick="showCourseDetails(${c.id})"><img src="${c.image}" style="width:100%;height:150px;object-fit:cover;border-radius:15px;margin-bottom:1rem;"><h3>${c.title}</h3><p>${c.duration}</p><button class="btn-outline">Enroll</button></div>`).join('');}
-function renderAllCourses(){let html='';fullCourseCatalog.forEach((c,idx)=>{html+=`<div class="course-row ${idx%2===1?'reverse':''}"><div class="course-image"><img src="${c.image}" alt="${c.title}"></div><div class="course-info"><h2>${c.title}</h2><p>${c.desc}</p><p><strong>Duration:</strong> ${c.duration} | <strong>Level:</strong> ${idx<4?'Beginner':'Intermediate'}</p><button class="btn-3d" onclick="enrollCourse(${c.id})">Enroll Now →</button></div></div>`;});document.getElementById('allCoursesList').innerHTML=html;}
-function showCourseDetails(id){const c=fullCourseCatalog.find(c=>c.id===id);document.getElementById('courseModalContent').innerHTML=`<h2>${c.title}</h2><img src="${c.image}" style="width:100%;border-radius:20px;margin:1rem 0;"><p>${c.desc}</p><p><strong>Duration:</strong> ${c.duration}</p><p><strong>What you'll learn:</strong> Practical skills, real projects, certificate upon completion.</p><button class="btn-3d" onclick="enrollCourse(${c.id});closeModal()">Enroll Now</button>`;document.getElementById('courseModal').style.display='flex';}
-function enrollCourse(id){if(!currentUser){alert('Login first!');showAuthModal();return;}let prog=userCoursesData[currentUser.email]||[];if(!prog.find(c=>c.id===id)){prog.push({id:id,title:fullCourseCatalog.find(c=>c.id===id).title,progress:0});userCoursesData[currentUser.email]=prog;saveAll();updateDashboard();alert(`Enrolled in ${fullCourseCatalog.find(c=>c.id===id).title}!`);}else alert('Already enrolled!');}
-function updateDashboard(){if(!currentUser)return;let prog=userCoursesData[currentUser.email]||[];document.getElementById('enrolledCount').innerHTML=prog.length;let completed=prog.filter(c=>c.progress>=100).length;document.getElementById('completedCount').innerHTML=completed;document.getElementById('certCount').innerHTML=completed;document.getElementById('myCoursesList').innerHTML=prog.map(c=>`<div class="course-card"><h3>${c.title}</h3><div class="progress-bar"><div class="progress-fill" style="width:${c.progress}%"></div></div><p>${c.progress}%</p><button class="btn-3d" onclick="updateProgress(${c.id})">Complete Lesson</button>${c.progress>=100?`<button onclick="showCertificate('${c.title}')">Get Certificate</button>`:''}</div>`).join('');const ctx=document.getElementById('progressChart')?.getContext('2d');if(window.myChart)window.myChart.destroy();if(ctx)window.myChart=new Chart(ctx,{type:'bar',data:{labels:prog.map(c=>c.title),datasets:[{label:'Progress',data:prog.map(c=>c.progress),backgroundColor:'#4d8eff'}]}});}
-function updateProgress(id){let prog=userCoursesData[currentUser.email]||[];let course=prog.find(c=>c.id===id);if(course&&course.progress<100)course.progress=Math.min(100,course.progress+25);userCoursesData[currentUser.email]=prog;saveAll();updateDashboard();if(course.progress>=100)alert('🎉 Course Completed!');}
-function showCertificate(name){document.getElementById('certUserName').innerHTML=currentUser.fullName;document.getElementById('certCourseName').innerHTML=name;document.getElementById('certModal').style.display='flex';}
-function downloadCertificate(){alert('Certificate PDF generated! Globally recognized.');}
-function renderProfile(){if(!currentUser)return;document.getElementById('profileInfo').innerHTML=`${currentUser.photo?`<img src="${currentUser.photo}" class="profile-photo">`:'<i class="fas fa-user-circle" style="font-size:80px;"></i>'}<p><strong>${currentUser.fullName}</strong><br>${currentUser.email}<br>${currentUser.country}</p>`;}
-function editProfile(){showAuthModal();}
-function renderBooks(){document.getElementById('booksList').innerHTML=books.map(b=>`<div class="book-card"><img src="${b.image}"><h3>${b.title}</h3><p>${b.author}</p><button class="btn-glow" onclick="window.open('${b.link}','_blank')">Read Now</button></div>`).join('');}
-function renderExplore(){document.getElementById('exploreVideos').innerHTML=exploreVideos.map(v=>`<div class="video-card"><img src="${v.image}"><h3>${v.country}</h3><button class="btn-3d" onclick="watchVideo('${v.video}','${v.country}')">Explore →</button></div>`).join('');}
-function watchVideo(url,country){document.getElementById('courseModalContent').innerHTML=`<h2>🇹🇿 Travel to ${country}</h2><iframe width="100%" height="300" src="${url}" frameborder="0" allowfullscreen></iframe><button class="btn-3d" onclick="closeModal()">Close</button>`;document.getElementById('courseModal').style.display='flex';}
-function renderOpportunities(){document.getElementById('opportunitiesList').innerHTML=`<div class="course-grid">${["Mastercard Foundation Scholars","Chevening Scholarship","UNICEF Internship","Google Internship","Remote Developer","Data Analyst"].map(o=>`<div class="stat-card"><h3>${o}</h3><button class="btn-glow" onclick="alert('Application submitted!')">Apply</button></div>`).join('')}</div>`;}
-function createGroup(){let ng=document.getElementById('newGroup')?.value;if(ng){communityGroups.push(ng);saveAll();renderCommunity();}}
-function renderCommunity(){document.getElementById('groupsList').innerHTML=`<div style="display:flex;flex-wrap:wrap;gap:1rem;">${communityGroups.map(g=>`<span class="stat-card">${g}</span>`).join('')}</div>`;}
-function renderAdminPanel(){document.getElementById('adminTotalUsers').innerHTML=users.length;let certs=Object.values(userCoursesData).flat().filter(c=>c.progress>=100).length;document.getElementById('adminTotalCerts').innerHTML=certs;document.getElementById('adminUsersList').innerHTML=`<table class="admin-table"><tr><th>Name</th><th>Email</th></tr>${users.map(u=>`<tr><td>${u.fullName}</td><td>${u.email}</td></tr>`).join('')}</table>`;document.getElementById('adminChatLogs').innerHTML=chatLogs.slice(-20).map(l=>`<div>${l.user}: ${l.question}<br><em>${l.answer.substring(0,80)}</em></div><hr>`).join('');}
-async function sendChatMessage(){let input=document.getElementById('chatInput');let q=input.value.trim();if(!q)return;let div=document.getElementById('chatMessages');div.innerHTML+=`<div class="message-user">${q}</div>`;input.value='';let a=getAIAnswer(q);setTimeout(()=>{div.innerHTML+=`<div class="message-bot">🤖 ${a}</div>`;div.scrollTop=div.scrollHeight;chatLogs.push({user:currentUser?.email||'guest',question:q,answer:a});saveAll();if(document.getElementById('adminPage').style.display==='block')renderAdminPanel();},300);}
-function getAIAnswer(q){let lq=q.toLowerCase();if(lq.includes('course'))return "RTLH offers 12+ courses: Python, Web Dev, Data Science, Cybersecurity, Piano, Marketing, Design, Leadership, Cloud, Mobile, English, Teaching!";if(lq.includes('book'))return "Visit our Books section for free tech and leadership ebooks!";if(lq.includes('certificate'))return "Complete any course to get a globally recognized certificate!";if(lq.includes('job')||lq.includes('opportunity'))return "Check Opportunities Center for scholarships, internships, and remote jobs!";return "Thanks for asking! I'm Theo LearnWise. Explore Courses, Books, or Opportunities for more info!";}
-function setChatAvatar(){let url="https://randomuser.me/api/portraits/men/32.jpg";document.getElementById('chatAvatar')?.setAttribute('src',url);}
-function toggleChat(){let w=document.getElementById('chatWindow');w.style.display=w.style.display==='flex'?'none':'flex';}
-function closeModal(){document.getElementById('courseModal').style.display='none';document.getElementById('certModal').style.display='none';document.getElementById('authModal').style.display='none';}
-function showPage(p){['home','courses','books','explore','opportunities','dashboard','profile','community','admin'].forEach(pid=>{let el=document.getElementById(pid+'Page');if(el)el.style.display='none';});document.getElementById(p+'Page').style.display='block';if(p==='dashboard')updateDashboard();if(p==='profile')renderProfile();if(p==='admin')renderAdminPanel();if(p==='community')renderCommunity();window.scrollTo(0,0);}
-function renderAll(){renderFeatured();renderAllCourses();renderBooks();renderExplore();renderOpportunities();renderCommunity();if(currentUser)updateUIForUser();}
-function init3D(){const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);const renderer=new THREE.WebGLRenderer({canvas:document.getElementById('canvas-bg'),alpha:true});renderer.setSize(window.innerWidth,window.innerHeight);const group=new THREE.Group();const starGeo=new THREE.BufferGeometry();const starCount=1500;const starPos=new Float32Array(starCount*3);for(let i=0;i<starCount;i++){starPos[i*3]=(Math.random()-0.5)*400;starPos[i*3+1]=(Math.random()-0.5)*250;starPos[i*3+2]=(Math.random()-0.5)*200-50;}starGeo.setAttribute('position',new THREE.BufferAttribute(starPos,3));const stars=new THREE.Points(starGeo,new THREE.PointsMaterial({color:0x4d8eff,size:0.15}));group.add(stars);const symbols=['♪','♫','🎵','🎶','💻','🖥️','📱','🎹','🎨','📊'];for(let i=0;i<120;i++){const canvas=document.createElement('canvas');canvas.width=64;canvas.height=64;const ctx=canvas.getContext('2d');ctx.fillStyle='#4d8eff';ctx.font='40px Arial';ctx.fillText(symbols[i%symbols.length],12,48);const texture=new THREE.CanvasTexture(canvas);const material=new THREE.SpriteMaterial({map:texture});const sprite=new THREE.Sprite(material);sprite.scale.set(0.8,0.8,1);sprite.position.x=(Math.random()-0.5)*200;sprite.position.y=(Math.random()-0.5)*150;sprite.position.z=(Math.random()-0.5)*150-30;group.add(sprite);}scene.add(group);camera.position.z=70;function animate(){requestAnimationFrame(animate);group.rotation.y+=0.0015;group.rotation.x+=0.0008;renderer.render(scene,camera);}animate();window.addEventListener('resize',()=>{renderer.setSize(window.innerWidth,window.innerHeight);camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();});}
-init();
-</script>
-<script type="importmap">{ "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js" } }</script>
-<script type="module">import * as THREE from 'three'; window.THREE = THREE; if(typeof init3D === 'function') window.init3D = init3D;</script>
+    <div id="profilePage" class="page" style="display:none;">
+      <div class="section">
+        <h2 class="section-title">My Profile</h2>
+        <div id="profileInfo"></div>
+        <button onclick="editProfile()" class="btn-outline">Edit Profile</button>
+      </div>
+    </div>
+
+    <div id="communityPage" class="page" style="display:none;">
+      <div class="section">
+        <h2>Community Hub</h2>
+        <div id="groupsList"></div>
+        <input type="text" id="newGroup" placeholder="New group name">
+        <button onclick="createGroup()" class="btn-3d">Create Group</button>
+      </div>
+    </div>
+
+    <div id="adminPage" class="page" style="display:none;">
+      <div class="section">
+        <h2 class="section-title">🔐 Admin Dashboard</h2>
+        <div class="dashboard-stats">
+          <div class="stat-card"><h3>Total Users</h3><h2 id="adminTotalUsers">0</h2></div>
+          <div class="stat-card"><h3>Certificates</h3><h2 id="adminTotalCerts">0</h2></div>
+        </div>
+        <div><h3>Users</h3><div id="adminUsersList"></div></div>
+        <div><h3>Chat Logs</h3><div id="adminChatLogs"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <h2>Create Account</h2>
+      <form id="authForm">
+        <input type="text" id="fullName" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="tel" id="phone" placeholder="Phone">
+        <select id="country">
+          <option>Rwanda</option><option>USA</option><option>UK</option>
+          <option>Kenya</option><option>Nigeria</option>
+        </select>
+        <input type="password" id="password" placeholder="Password" required>
+        <input type="file" id="profilePhoto" accept="image/*">
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="courseModal" class="modal">
+    <div class="modal-content" id="courseModalContent"></div>
+  </div>
+
+  <div id="certModal" class="modal">
+    <div class="modal-content">
+      <h1>RTLH ACADEMY</h1>
+      <h2>CERTIFICATE</h2>
+      <h3 id="certUserName"></h3>
+      <p>completed <strong id="certCourseName"></strong></p>
+      <button onclick="downloadCertificate()" class="btn-3d">Download</button>
+    </div>
+  </div>
+
+  <!-- Chatbot -->
+  <div class="chatbot">
+    <div class="chat-toggle" onclick="toggleChat()">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" id="chatAvatar" alt="Theo">
+    </div>
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-header">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Theo">
+        <h3>Theo LearnWise AI</h3>
+        <button class="close-chat" onclick="toggleChat()">✕</button>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message-bot">👋 Hi! I'm Theo LearnWise. Ask me anything!</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Type your question...">
+        <button onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- External JavaScript -->
+  <script src="js/main.js"></script>
+  
+  <!-- Three.js Import Map -->
+  <script type="importmap">
+    { "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js" } }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+    window.THREE = THREE;
+    if(typeof init3D === 'function') window.init3D = init3D;
+  </script>
 </body>
 </html>
-```
