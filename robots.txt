@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/sitemap.xml
