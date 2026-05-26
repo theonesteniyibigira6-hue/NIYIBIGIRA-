@@ -19,15 +19,15 @@
   <meta property="og:url" content="https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/">
   <meta property="og:title" content="NIYIBIGIRA THEONESTE | 3D Interactive Portfolio">
   <meta property="og:description" content="Explore immersive 3D web experiences, WebGL animations, and creative development projects by Niyibigira Théoneste.">
-  <meta property="og:image" content="https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/preview.jpg">
+  <meta property="og:image" content="https://i.postimg.cc/CKRN4M0V/Chat-GPT-Image-Apr-30-2026-09-08-18-AM.png">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="NIYIBIGIRA THEONESTE | 3D Portfolio">
   <meta name="twitter:description" content="3D Visual Artist & Full-Stack Developer. Check out my interactive Three.js projects.">
-  <meta name="twitter:image" content="https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/preview.jpg">
+  <meta name="twitter:image" content="https://i.postimg.cc/CKRN4M0V/Chat-GPT-Image-Apr-30-2026-09-08-18-AM.png">
   
-  <!-- Favicon (standard .ico file) -->
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   
@@ -36,10 +36,333 @@
   
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      color: white;
+      background-color: #050510;
+    }
+
+    /* Canvas for Three.js Background */
+    #canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      display: block;
+    }
+
+    .animated-bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(0,0,30,0.3) 0%, rgba(0,0,10,0.7) 100%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 1rem 2rem;
+      background: rgba(15, 25, 45, 0.4);
+      backdrop-filter: blur(12px);
+      border-radius: 60px;
+      margin-bottom: 4rem;
+      border: 1px solid rgba(100, 150, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #aaffff, #4d8eff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: #eef5ff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 1rem;
+      padding: 0.4rem 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: #7bc5ff;
+      border-bottom-color: #3e8eff;
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section with Profile Image */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 5rem;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    /* Profile Image Styles */
+    .profile-container {
+      margin-bottom: 2rem;
+    }
+    
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(100, 150, 255, 0.6);
+      box-shadow: 0 0 30px rgba(79, 142, 255, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .profile-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(79, 142, 255, 0.7);
+    }
+
+    .hero-glow {
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #8bb9ff, #5f9eff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(79, 142, 255, 0.5);
+      letter-spacing: -1px;
+    }
+
+    .hero-sub {
+      font-size: 1.3rem;
+      margin-top: 1rem;
+      color: #ccddff;
+      max-width: 700px;
+      backdrop-filter: blur(5px);
+    }
+
+    .cta-btn {
+      margin-top: 2rem;
+      background: linear-gradient(45deg, #2a6eff, #9747ff);
+      border: none;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0, 80, 255, 0.4);
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 30px rgba(0, 120, 255, 0.7);
+      background: linear-gradient(45deg, #3e7eff, #a55cff);
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60%;
+      height: 3px;
+      background: linear-gradient(90deg, #3e8eff, #9b5eff);
+      border-radius: 3px;
+    }
+
+    .skills-grid, .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .skill-card, .project-card {
+      background: rgba(20, 30, 55, 0.55);
+      backdrop-filter: blur(10px);
+      border-radius: 28px;
+      padding: 1.8rem;
+      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.4s;
+      border: 1px solid rgba(100, 150, 255, 0.3);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .skill-card:hover, .project-card:hover {
+      transform: translateY(-12px) rotateX(5deg) rotateY(2deg);
+      box-shadow: 0 30px 45px rgba(0,0,0,0.4);
+      border-color: rgba(100, 180, 255, 0.7);
+      background: rgba(30, 45, 75, 0.7);
+    }
+
+    .skill-icon {
+      font-size: 2.5rem;
+      color: #7bb9ff;
+      margin-bottom: 1rem;
+    }
+
+    .skill-card h3, .project-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .skill-card p {
+      color: #cfdfff;
+      font-size: 0.9rem;
+    }
+
+    .project-card .tech-badge {
+      display: inline-block;
+      background: rgba(0, 100, 255, 0.3);
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      margin-top: 1rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      background: rgba(10, 20, 40, 0.5);
+      backdrop-filter: blur(12px);
+      border-radius: 40px;
+      padding: 2.5rem;
+      margin: 3rem 0;
+      border: 1px solid rgba(90, 150, 255, 0.3);
+    }
+
+    .contact-info {
+      flex: 1;
+    }
+
+    .contact-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.2rem 0;
+    }
+    .contact-detail i {
+      font-size: 1.5rem;
+      color: #5f9eff;
+      width: 40px;
+    }
+    .contact-form {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-form input, .contact-form textarea {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(100,150,255,0.4);
+      padding: 0.9rem;
+      border-radius: 30px;
+      color: white;
+      font-family: inherit;
+      outline: none;
+      transition: 0.2s;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #4d8eff;
+      box-shadow: 0 0 12px rgba(77,142,255,0.3);
+    }
+    .contact-form button {
+      background: linear-gradient(95deg, #2a6eff, #a05eff);
+      border: none;
+      padding: 0.9rem;
+      border-radius: 40px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .contact-form button:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(100,150,255,0.2);
+      font-size: 0.8rem;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 800px) {
+      .hero-glow { font-size: 2.5rem; }
+      .container { padding: 1rem; }
+      header { flex-direction: column; gap: 1rem; }
+      .nav-links { gap: 1rem; }
+      .profile-img { width: 130px; height: 130px; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- 3D Canvas injected here by Three.js -->
   <div id="canvas-container"></div>
   <div class="animated-bg-overlay"></div>
 
@@ -55,6 +378,10 @@
     </header>
 
     <section id="home" class="hero">
+      <!-- Profile Image Added Here -->
+      <div class="profile-container">
+        <img class="profile-img" src="https://i.postimg.cc/CKRN4M0V/Chat-GPT-Image-Apr-30-2026-09-08-18-AM.png" alt="Niyibigira Théoneste - 3D Visual Artist & Developer">
+      </div>
       <h1 class="hero-glow">Crafting Digital <br> Dimensions</h1>
       <p class="hero-sub">3D Visual Artist & Full-Stack Developer — Pushing boundaries with interactive design, WebGL, and futuristic aesthetics.</p>
       <button class="cta-btn" id="exploreBtn"><i class="fas fa-rocket"></i> Explore My Work</button>
@@ -116,9 +443,9 @@
         <div class="contact-info">
           <h3>Collaborate & Create</h3>
           <p>Have a visionary project? Let's blend art and code to build something extraordinary.</p>
-          <div class="contact-detail"><i class="fas fa-envelope"></i> <span>alex.morgan@dimensional.dev</span></div>
-          <div class="contact-detail"><i class="fab fa-github"></i> <span>github.com/alexmorgan3d</span></div>
-          <div class="contact-detail"><i class="fab fa-linkedin"></i> <span>linkedin.com/in/alex-morgan-xr</span></div>
+          <div class="contact-detail"><i class="fas fa-envelope"></i> <span>theoneste@dimensional.dev</span></div>
+          <div class="contact-detail"><i class="fab fa-github"></i> <span>github.com/niyibigira</span></div>
+          <div class="contact-detail"><i class="fab fa-linkedin"></i> <span>linkedin.com/in/niyibigira-theoneste</span></div>
         </div>
         <div class="contact-form">
           <input type="text" placeholder="Your Name" id="contactName">
@@ -129,11 +456,10 @@
       </div>
     </section>
     <footer>
-      <p>© 2026 Alex Morgan — Immersive 3D Portfolio | All dimensions open</p>
+      <p>© 2026 NIYIBIGIRA Theoneste — Immersive 3D Portfolio | All dimensions open</p>
     </footer>
   </div>
 
-  <!-- Three.js library and custom 3D Starfield + Rotating Core -->
   <script type="importmap">
     {
       "imports": {
@@ -145,7 +471,6 @@
   <script type="module">
     import * as THREE from 'three';
 
-    // --- Setup 3D Scene, Camera, Renderer (animated background with moving particles & a central wireframe torus knot) 
     const container = document.getElementById('canvas-container');
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x010118);
@@ -160,12 +485,10 @@
     renderer.setPixelRatio(window.devicePixelRatio);
     container.appendChild(renderer.domElement);
 
-    // --- Animated starfield particle system (rotating & moving)
     const starGeometry = new THREE.BufferGeometry();
     const starCount = 2500;
     const starPositions = new Float32Array(starCount * 3);
     for (let i = 0; i < starCount; i++) {
-      // Spread across a large sphere radius
       const radius = 50 + Math.random() * 40;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
@@ -185,7 +508,6 @@
     const stars = new THREE.Points(starGeometry, starMaterial);
     scene.add(stars);
     
-    // Secondary tiny stars - faster movement
     const starField2Geo = new THREE.BufferGeometry();
     const starCount2 = 1800;
     const pos2 = new Float32Array(starCount2 * 3);
@@ -199,7 +521,6 @@
     const stars2 = new THREE.Points(starField2Geo, starMat2);
     scene.add(stars2);
     
-    // Central decorative element: Torus Knot with glowing edges (3D object)
     const knotGeo = new THREE.TorusKnotGeometry(1.2, 0.32, 200, 32, 3, 4);
     const knotMat = new THREE.MeshStandardMaterial({
       color: 0x3a86ff,
@@ -212,13 +533,11 @@
     const torusKnot = new THREE.Mesh(knotGeo, knotMat);
     scene.add(torusKnot);
     
-    // Additional wireframe sphere for depth
     const sphereWireGeo = new THREE.SphereGeometry(1.9, 24, 18);
     const wireMat = new THREE.MeshBasicMaterial({ color: 0x4d8eff, wireframe: true, transparent: true, opacity: 0.2 });
     const wireSphere = new THREE.Mesh(sphereWireGeo, wireMat);
     scene.add(wireSphere);
     
-    // Floating particles around center
     const particleRingCount = 800;
     const ringGeo = new THREE.BufferGeometry();
     const ringPositions = new Float32Array(particleRingCount * 3);
@@ -237,7 +556,6 @@
     const ringPoints = new THREE.Points(ringGeo, ringPointsMat);
     scene.add(ringPoints);
     
-    // Lights for drama
     const ambientLight = new THREE.AmbientLight(0x222222);
     scene.add(ambientLight);
     const mainLight = new THREE.DirectionalLight(0xffffff, 1);
@@ -250,20 +568,17 @@
     coloredLight.position.set(1.5, 1, 2);
     scene.add(coloredLight);
     
-    // Simple animation loop - moving stars rotating and central objects spinning
     let time = 0;
     
     function animate3D() {
       requestAnimationFrame(animate3D);
       time += 0.008;
       
-      // Rotate stars field slowly
       stars.rotation.y = time * 0.05;
       stars.rotation.x = Math.sin(time * 0.1) * 0.1;
       stars2.rotation.y = time * 0.03;
       stars2.rotation.x = time * 0.02;
       
-      // Rotate central knot and sphere
       torusKnot.rotation.x = time * 0.5;
       torusKnot.rotation.y = time * 0.8;
       wireSphere.rotation.x = time * 0.3;
@@ -271,7 +586,6 @@
       ringPoints.rotation.z = time * 0.6;
       ringPoints.rotation.y = time * 0.4;
       
-      // Gentle camera movement for immersive parallax
       camera.position.x += (0 - camera.position.x) * 0.02;
       camera.position.y += (Math.sin(time * 0.2) * 0.1 - camera.position.y) * 0.02;
       camera.lookAt(0, 0, 0);
@@ -281,7 +595,6 @@
     
     animate3D();
     
-    // Handle window resize
     window.addEventListener('resize', onWindowResize, false);
     function onWindowResize() {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -289,7 +602,6 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
     }
     
-    // Additional interactive button effects + simple form alert
     document.getElementById('exploreBtn').addEventListener('click', () => {
       document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
     });
@@ -300,17 +612,15 @@
       const email = document.getElementById('contactEmail').value;
       const msg = document.getElementById('contactMsg').value;
       if (name && email && msg) {
-        alert(`✨ Thanks ${name}! Your message has been transmitted through the dimensional rift. I'll reply soon.`);
-        // Clear form fields
+        alert(`✨ Thanks ${name}! Your message has been transmitted. I'll reply soon.`);
         document.getElementById('contactName').value = '';
         document.getElementById('contactEmail').value = '';
         document.getElementById('contactMsg').value = '';
       } else {
-        alert("Please fill all fields before sending your intergalactic message 🌌");
+        alert("Please fill all fields before sending your message 🌌");
       }
     });
     
-    // Smooth navigation for internal links
     document.querySelectorAll('.nav-links a').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
