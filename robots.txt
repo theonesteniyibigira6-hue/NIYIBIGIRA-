@@ -1,3 +1,9 @@
+# robots.txt for RTLH Academy
 User-agent: *
 Allow: /
-Sitemap: https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/sitemap.xml
+
+# Sitemap location
+Sitemap: https://YOUR_USERNAME.github.io/rtlh-academy/sitemap.xml
+
+# Crawl delay (be respectful to the server)
+Crawl-delay: 1
