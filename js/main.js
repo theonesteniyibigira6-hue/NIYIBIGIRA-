@@ -487,4 +487,62 @@ function init() {
 }
 
 // Start the app
-init();
+init(); // Add to js/main.js
+
+// Admin credentials (store securely - in production use backend)
+const ADMINS = [
+  { email: "admin@rtlh.academy", password: "SecurePass123!", role: "super_admin" },
+  { email: "theoneste@rtlh.academy", password: "Theo@RTLH2026!", role: "admin" }
+];
+
+function authenticateAdmin(email, password) {
+  return ADMINS.find(admin => admin.email === email && admin.password === password);
+}
+
+// Admin login modal
+function showAdminLogin() {
+  const modalHtml = `
+    <div class="modal-content">
+      <h2>🔐 Admin Login</h2>
+      <input type="email" id="adminEmail" placeholder="Admin Email" required>
+      <input type="password" id="adminPassword" placeholder="Password" required>
+      <button onclick="verifyAdminLogin()" class="btn-3d">Login</button>
+      <button onclick="closeModal()" class="btn-outline">Cancel</button>
+    </div>
+  `;
+  document.getElementById('courseModalContent').innerHTML = modalHtml;
+  document.getElementById('courseModal').style.display = 'flex';
+}
+
+function verifyAdminLogin() {
+  const email = document.getElementById('adminEmail').value;
+  const password = document.getElementById('adminPassword').value;
+  const admin = authenticateAdmin(email, password);
+  
+  if (admin) {
+    localStorage.setItem('rtlh_admin_logged_in', 'true');
+    localStorage.setItem('rtlh_admin_email', email);
+    closeModal();
+    showPage('admin');
+    alert(`Welcome back, ${email}!`);
+  } else {
+    alert("Invalid admin credentials!");
+  }
+}
+
+// Protected admin page check
+function isAdminLoggedIn() {
+  return localStorage.getItem('rtlh_admin_logged_in') === 'true';
+}
+
+// Update showPage to protect admin
+const protectedShowPage = showPage;
+window.showPage = function(page) {
+  if (page === 'admin') {
+    if (!isAdminLoggedIn()) {
+      showAdminLogin();
+      return;
+    }
+  }
+  protectedShowPage(page);
+};
