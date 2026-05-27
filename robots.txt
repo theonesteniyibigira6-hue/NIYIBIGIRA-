@@ -1,9 +1,96 @@
-# robots.txt for RTLH Academy
+# robots.txt for NIYIBIGIRA THEONESTE - Rwanda Tech Learning Hub Portfolio
+# Website: https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/
+# Created by: Theo Codem
+
+# Allow all search engines to crawl the site
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://YOUR_USERNAME.github.io/rtlh-academy/sitemap.xml
+# Specify sitemap location
+Sitemap: https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/sitemap.xml
 
-# Crawl delay (be respectful to the server)
+# Crawl delay to be respectful to the server
+Crawl-delay: 1
+
+# ============================================
+# DISALLOWED SECTIONS (Admin & Private Areas)
+# ============================================
+
+# Disable admin panel from search engines
+Disallow: /#admin
+Disallow: /*admin*
+Disallow: /admin
+
+# Disable user account pages (private data)
+Disallow: /#account
+Disallow: /#dashboard
+Disallow: /*profile*
+Disallow: /*account*
+
+# Disable authentication pages
+Disallow: /*auth*
+Disallow: /*login*
+Disallow: /*signup*
+Disallow: /*register*
+
+# Disable modal content (dynamic pages)
+Disallow: /*modal*
+
+# Disable certificate pages (unique per user)
+Disallow: /*certificate*
+
+# Disable course content pages (access requires login)
+Disallow: /*course*
+
+# Disable API and data endpoints
+Disallow: /*api*
+Disallow: /*.json$
+
+# ============================================
+# ALLOW ESSENTIAL PAGES
+# ============================================
+
+# Allow main content pages
+Allow: /$
+Allow: /#home
+Allow: /#coreSkills
+Allow: /#explore
+Allow: /#books
+Allow: /#community
+Allow: /#contact
+Allow: /#privacy
+
+# Allow static assets
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.svg$
+Allow: /*.ico$
+
+# ============================================
+# HOST DIRECTIVE (Optional - for better SEO)
+# ============================================
+Host: https://theonesteniyibigira6-hue.github.io
+
+# ============================================
+# CRAWL DELAY FOR SPECIFIC BOTS
+# ============================================
+
+# Slower crawl for aggressive bots
+User-agent: AhrefsBot
+Crawl-delay: 2
+
+User-agent: SemrushBot
+Crawl-delay: 2
+
+User-agent: MJ12bot
+Crawl-delay: 2
+
+User-agent: DotBot
+Crawl-delay: 2
+
+# Default for all others
+User-agent: *
 Crawl-delay: 1

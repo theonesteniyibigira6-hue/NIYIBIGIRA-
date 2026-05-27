@@ -1,120 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
   <!-- Main Pages -->
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/#home</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/#courses</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/#books</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/#explore</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/#opportunities</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/#dashboard</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/#profile</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/#community</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/#admin</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <!-- Individual Course Pages (Dynamic Content) -->
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/course/python-programming</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/course/full-stack-web-dev</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/course/data-science-ai</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/course/cybersecurity</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/course/digital-marketing</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://theonesteniyibigira6-hue.github.io/rtlh-academy/course/piano-mastery</loc>
-    <lastmod>2026-05-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/</loc><priority>1.0</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/#home</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/#coreSkills</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/#explore</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/#books</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/#community</loc><priority>0.7</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/#contact</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/#privacy</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/#account</loc><priority>0.6</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://theonesteniyibigira6-hue.github.io/NIYIBIGIRA-/#dashboard</loc><priority>0.6</priority><changefreq>weekly</changefreq></url>
 
 </urlset>

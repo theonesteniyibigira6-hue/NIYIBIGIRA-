@@ -1,0 +1,296 @@
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>NIYIBIGIRA THEONESTE | Musician • Educator • Tech Innovator • leader • Explorer • Artist</title>
+  
+  <meta name="description" content="NIYIBIGIRA Theoneste - Student-Teacher, Pianist, ICT Enthusiast. Founder of Rwanda Tech Learning Hub.">
+  <meta name="keywords" content="Niyibigira, Theoneste, Pianist, Theo Learn Wise, RTLH, RWANDA TECH LEARNING HUB">
+  <meta name="author" content="NIYIBIGIRA Theoneste - Theo Codem">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; overflow-x: hidden; background: #0a0a2a; color: #fff; }
+    a, button, .skill-card, .group-card, .nav-menu a { cursor: pointer; transition: all 0.3s ease; }
+    a:hover, button:hover, .skill-card:hover { transform: scale(1.02); }
+    
+    #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
+    .gradient-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 30%, rgba(10,10,42,0.5), rgba(0,0,20,0.8)); z-index: -1; }
+    
+    .main-container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; position: relative; z-index: 10; }
+    
+    .navbar { background: rgba(15, 25, 55, 0.4); backdrop-filter: blur(15px); border-radius: 60px; padding: 0.8rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 2rem; border: 1px solid rgba(80, 120, 255, 0.3); position: sticky; top: 1rem; z-index: 100; }
+    .logo { display: flex; align-items: center; gap: 0.8rem; }
+    .logo i { font-size: 2rem; color: #4d8eff; }
+    .logo h1 { font-size: 1.2rem; background: linear-gradient(135deg, #fff, #4d8eff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .nav-menu { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .nav-menu a { color: #eef5ff; text-decoration: none; font-weight: 500; padding: 0.5rem 0.8rem; border-radius: 30px; font-size: 0.8rem; }
+    .nav-menu a:hover { background: rgba(77, 142, 255, 0.3); color: #7bc5ff; transform: scale(1.05); }
+    
+    .btn-3d { background: linear-gradient(45deg, #2a6eff, #9747ff); border: none; padding: 10px 24px; border-radius: 40px; color: white; font-weight: bold; transition: all 0.2s ease; box-shadow: 0 5px 0 #1a3a8a; cursor: pointer; }
+    .btn-3d:active { transform: translateY(3px); box-shadow: 0 2px 0 #1a3a8a; }
+    .btn-outline { background: transparent; border: 2px solid #4d8eff; padding: 8px 22px; border-radius: 40px; color: #4d8eff; cursor: pointer; }
+    .btn-outline:hover { background: #4d8eff; color: white; }
+    .btn-glow { background: rgba(77,142,255,0.2); border: 1px solid #7bc5ff; box-shadow: 0 0 12px rgba(77,142,255,0.5); border-radius: 40px; padding: 8px 20px; color: white; cursor: pointer; }
+    .btn-glow:hover { box-shadow: 0 0 20px #4d8eff; transform: translateY(-2px); }
+    
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); z-index: 1000; justify-content: center; align-items: center; }
+    .modal-content { background: linear-gradient(135deg, #0f1a3a, #0a0f2a); border-radius: 30px; padding: 2rem; max-width: 600px; width: 90%; max-height: 85vh; overflow-y: auto; border: 1px solid rgba(77,142,255,0.5); }
+    .modal-content input, .modal-content select, .modal-content textarea { width: 100%; padding: 0.8rem; margin: 0.5rem 0; background: rgba(255,255,255,0.1); border: 1px solid rgba(77,142,255,0.3); border-radius: 15px; color: white; }
+    .modal-content button { width: 100%; padding: 0.8rem; margin-top: 1rem; background: linear-gradient(45deg, #2a6eff, #9747ff); border: none; border-radius: 30px; color: white; font-weight: bold; cursor: pointer; }
+    .profile-photo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem; display: block; border: 3px solid #4d8eff; }
+    
+    .hero { text-align: center; padding: 3rem 0; }
+    .hero h1 { font-size: 3.5rem; background: linear-gradient(135deg, #fff, #7bc5ff, #4d8eff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-tagline { font-size: 1.2rem; color: #ccddff; max-width: 800px; margin: 0 auto; }
+    
+    .section { padding: 2.5rem 0; border-bottom: 1px solid rgba(77,142,255,0.2); }
+    .section-title { font-size: 2rem; margin-bottom: 1.5rem; position: relative; display: inline-block; }
+    .section-title:after { content: ''; position: absolute; bottom: -10px; left: 0; width: 60%; height: 3px; background: linear-gradient(90deg, #3e8eff, #9b5eff); }
+    
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+    .skill-card { background: rgba(20,30,55,0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 1.5rem; text-align: center; border: 1px solid rgba(100,150,255,0.3); }
+    .skill-card:hover { transform: translateY(-8px); border-color: #4d8eff; }
+    .skill-card i { font-size: 2.5rem; color: #4d8eff; margin-bottom: 1rem; }
+    .skill-card img { width: 100%; height: 160px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem; }
+    
+    .explore-grid, .books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+    .explore-card, .book-card { background: rgba(20,30,55,0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 1.5rem; text-align: center; border: 1px solid rgba(100,150,255,0.3); }
+    .explore-card:hover, .book-card:hover { transform: translateY(-5px); border-color: #4d8eff; }
+    .book-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem; }
+    
+    .community-groups { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+    .group-card { background: rgba(77,142,255,0.2); border-radius: 20px; padding: 1rem 1.5rem; border: 1px solid #4d8eff; cursor: pointer; }
+    .group-card:hover { transform: scale(1.03); background: rgba(77,142,255,0.4); }
+    
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+    .contact-card { background: rgba(20,30,55,0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 1.5rem; border: 1px solid rgba(100,150,255,0.3); }
+    .contact-card i { font-size: 2rem; color: #4d8eff; margin-right: 1rem; width: 40px; }
+    .contact-card a { color: #7bc5ff; text-decoration: none; }
+    
+    .dashboard-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .stat-card { background: rgba(20,30,55,0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 1.5rem; text-align: center; }
+    .admin-table { width: 100%; border-collapse: collapse; background: rgba(20,30,55,0.6); border-radius: 15px; overflow: hidden; margin-top: 1rem; }
+    .admin-table th, .admin-table td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(77,142,255,0.2); }
+    .admin-table th { background: rgba(77,142,255,0.3); }
+    
+    /* Custom Chatbot - Jotform Brand Removed */
+    .chatbot { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+    .chat-toggle { width: 65px; height: 65px; border-radius: 50%; cursor: pointer; animation: pulse 2s infinite; overflow: hidden; border: 3px solid #4d8eff; background: #fff; display: flex; align-items: center; justify-content: center; }
+    .chat-toggle img { width: 100%; height: 100%; object-fit: cover; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(77,142,255,0.7); } 70% { box-shadow: 0 0 0 15px rgba(77,142,255,0); } 100% { box-shadow: 0 0 0 0 rgba(77,142,255,0); } }
+    .chat-window { position: absolute; bottom: 80px; right: 0; width: 400px; height: 550px; background: rgba(15,25,45,0.98); backdrop-filter: blur(15px); border-radius: 20px; display: none; flex-direction: column; border: 1px solid #4d8eff; overflow: hidden; }
+    .chat-header { padding: 1rem; background: linear-gradient(135deg, #2a6eff, #9747ff); display: flex; align-items: center; justify-content: space-between; }
+    .chat-header h3 { margin: 0; font-size: 1rem; }
+    .close-chat { background: rgba(255,255,255,0.2); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; }
+    .chat-iframe { width: 100%; height: calc(100% - 60px); border: none; background: white; }
+    
+    .footer-copyright { text-align: center; padding: 2rem; margin-top: 2rem; border-top: 1px solid rgba(77,142,255,0.3); font-size: 0.85rem; }
+    @media (max-width: 768px) { .main-container { padding: 0.5rem 1rem; } .hero h1 { font-size: 2rem; } .chat-window { width: 320px; height: 480px; } }
+  </style>
+</head>
+<body>
+
+<canvas id="canvas-bg"></canvas>
+<div class="gradient-overlay"></div>
+
+<div class="main-container">
+  <nav class="navbar">
+    <div class="logo"><i class="fas fa-music"></i><h1>Niyibigira Theoneste</h1></div>
+    <div class="nav-menu">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('coreSkills')">Core Skills</a>
+      <a onclick="showPage('explore')">Explore</a>
+      <a onclick="showPage('books')">Books</a>
+      <a onclick="showPage('community')">Community</a>
+      <a onclick="showPage('contact')">Contact</a>
+      <a onclick="showPage('account')">Account</a>
+      <a onclick="showPage('dashboard')">Dashboard</a>
+      <a onclick="showPage('privacy')">Privacy & Terms</a>
+      <a onclick="showPage('admin')" style="background:rgba(255,50,50,0.3);">🔒 Admin</a>
+    </div>
+    <div><button onclick="showAuthModal()" id="authBtn" class="btn-3d">Login/Signup</button><span id="userNameDisplay" style="display:none; margin-left:10px;"></span></div>
+  </nav>
+
+  <!-- Home Page -->
+  <div id="homePage" class="page">
+    <div class="hero">
+      <h1>NIYIBIGIRA THEONESTE</h1>
+      <p class="hero-tagline">🎹 Musician • 🎨 Artist • 💻 Tech Innovator • 📚 Educator • 🌍 Founder of Rwanda Tech Learning Hub</p>
+      <button onclick="handleJoinJourney()" class="btn-3d" style="margin-top:2rem;">🚀 Join My Journey</button>
+    </div>
+    <div class="section">
+      <h2 class="section-title"><i class="fas fa-globe"></i> About Rwanda Tech Learning Hub</h2>
+      <p style="line-height:1.8; font-size:1.1rem;"><strong>NIYIBIGIRA Theoneste</strong> has created <strong>RWANDA TECH LEARNING HUB (RTLH)</strong> — a platform dedicated to helping people, especially Rwandans all over the world, learn different courses and empower them with technology, music, fine arts, and digital skills.</p>
+      <button onclick="window.open('https://theonesteniyibigira6-hue.github.io/rtlh-academy/', '_blank')" class="btn-3d" style="margin-top:1.5rem;"><i class="fas fa-external-link-alt"></i> Explore RTLH Platform</button>
+    </div>
+    <div class="section">
+      <h2 class="section-title"><i class="fas fa-user-circle"></i> About Me</h2>
+      <p style="line-height:1.8;"><strong>NIYIBIGIRA Theoneste</strong> is a passionate student-teacher at TTC Muhanga, educator, musician, technology enthusiast, and creative leader. Known as <strong>Niyibigira Pianist</strong>, <strong>Theo Learn Wise</strong>, and <strong>Theo Codem</strong>.</p>
+    </div>
+  </div>
+
+  <!-- Core Skills Page (9 skills including Leadership) -->
+  <div id="coreSkillsPage" class="page" style="display:none;"><div class="section"><h2 class="section-title"><i class="fas fa-star"></i> My Core Skills</h2><div id="coreSkillsContent"></div></div></div>
+  <div id="explorePage" class="page" style="display:none;"><div class="section"><h2 class="section-title">Explore More</h2><div class="explore-grid" id="exploreGrid"></div></div></div>
+  <div id="booksPage" class="page" style="display:none;"><div class="section"><h2 class="section-title">Digital Library</h2><div class="books-grid" id="booksGrid"></div></div></div>
+  <div id="communityPage" class="page" style="display:none;"><div class="section"><h2 class="section-title">Community Hub</h2><div class="community-groups" id="groupsList"></div><div style="margin-top:2rem;"><input type="text" id="newGroupName" placeholder="Create a group..." style="padding:0.8rem; width:60%; background:rgba(255,255,255,0.1); border-radius:30px;"><button onclick="createCommunityGroup()" class="btn-3d">Create Group</button></div><div style="margin-top:2rem;"><h3>Forum</h3><div id="forumPosts"></div><textarea id="newPost" rows="2" placeholder="Share..." style="width:100%; background:rgba(255,255,255,0.1); border-radius:15px; padding:0.8rem;"></textarea><button onclick="addForumPost()" class="btn-glow">Post</button></div></div></div>
+  <div id="contactPage" class="page" style="display:none;"><div class="section"><h2 class="section-title">Contact</h2><div class="contact-grid"><div class="contact-card"><i class="fas fa-user"></i> NIYIBIGIRA Theoneste</div><div class="contact-card"><i class="fas fa-envelope"></i> <a href="mailto:theonesteniyibigira6@gmail.com">theonesteniyibigira6@gmail.com</a></div><div class="contact-card"><i class="fas fa-phone"></i> <a href="tel:+250794204258">0794204258</a></div><div class="contact-card"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/250794204258">WhatsApp</a></div></div><textarea id="messageText" rows="3" placeholder="Message..." style="width:100%; max-width:500px; background:rgba(255,255,255,0.1); border-radius:15px; padding:0.8rem;"></textarea><br><button onclick="sendDirectMessage()" class="btn-3d">Send WhatsApp</button><button onclick="sendEmailMessage()" class="btn-outline">Send Email</button></div></div>
+  <div id="accountPage" class="page" style="display:none;"><div class="section"><h2 class="section-title">My Account</h2><div id="profileInfo"></div><button onclick="editProfile()" class="btn-outline">Edit Profile</button></div></div>
+  <div id="dashboardPage" class="page" style="display:none;"><div class="section"><h2 class="section-title">Dashboard</h2><div class="dashboard-stats"><div class="stat-card"><h3>Profile Views</h3><h2 id="profileViews">0</h2></div><div class="stat-card"><h3>Skills Progress</h3><h2 id="skillsProgress">0</h2></div><div class="stat-card"><h3>Certificates</h3><h2 id="certificateCount">0</h2></div></div><canvas id="activityChart" height="200"></canvas><h3>My Courses</h3><div id="myCoursesList"></div><h3>My Certificates</h3><div id="myCertificatesList"></div></div></div>
+  <div id="privacyPage" class="page" style="display:none;"><div class="section"><h2 class="section-title">Privacy & Terms</h2><div id="privacyContent" style="max-height:400px; overflow-y:auto; background:rgba(0,0,0,0.3); padding:2rem; border-radius:20px;"></div><button id="agreeButton" onclick="acceptTerms()" class="btn-3d">I Agree</button></div></div>
+  <div id="adminPage" class="page" style="display:none;"><div class="section"><h2 class="section-title">Admin Dashboard</h2><div id="adminProtectedContent"></div></div></div>
+</div>
+
+<!-- Modals -->
+<div id="authModal" class="modal"><div class="modal-content"><h2>Create Account</h2><form id="authForm"><input type="text" id="fullName" placeholder="Full Name" required><input type="email" id="email" placeholder="Email" required><input type="tel" id="phone" placeholder="Phone"><select id="country"><option>Rwanda</option><option>USA</option><option>UK</option><option>Kenya</option></select><input type="password" id="password" placeholder="Password" required><input type="file" id="profilePhoto" accept="image/*"><button type="submit">Register</button></form></div></div>
+<div id="courseModal" class="modal"><div class="modal-content" id="courseModalContent"></div></div>
+<div id="certModal" class="modal"><div class="modal-content" id="certModalContent"></div></div>
+<div id="adminPasswordModal" class="modal"><div class="modal-content"><h2>Admin Access</h2><input type="password" id="adminPassword" placeholder="Password"><button onclick="verifyAdminPassword()">Access</button><button onclick="closeModal()" class="btn-outline">Cancel</button></div></div>
+
+<!-- Chatbot - Jotform Brand Removed, Custom Image Icon -->
+<div class="chatbot">
+  <div class="chat-toggle" onclick="toggleChat()">
+    <img src="https://i.postimg.cc/T3Jb8BRv/Gemini-Generated-Image-9wq94e9wq94e9wq9-6a16dadb5558a1-58157296.png" alt="Theo AI">
+  </div>
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header"><h3><i class="fas fa-brain"></i> Theo LearnWise AI</h3><button class="close-chat" onclick="toggleChat()">✕</button></div>
+    <iframe class="chat-iframe" src="https://agent.jotform.com/019e5d473d3a7b3389d34ebcf58152d4cd4e" title="Theo LearnWise AI"></iframe>
+  </div>
+</div>
+
+<div class="footer-copyright"><p>Created by: <strong>NIYIBIGIRA Theoneste - Theo Codem</strong> | © 2026 Rwanda Tech Learning Hub</p></div>
+
+<script>
+  const ADMIN_PASSWORD = "TheoAdmin2026!";
+  let users = JSON.parse(localStorage.getItem('portfolio_users') || '[]');
+  let currentUser = null, adminLoggedIn = false, profileViews = parseInt(localStorage.getItem('portfolio_profileViews') || '0');
+  let forumPosts = JSON.parse(localStorage.getItem('portfolio_forumPosts') || '[]');
+  let chatHistory = JSON.parse(localStorage.getItem('portfolio_chatHistory') || '[]');
+  let contactMessages = JSON.parse(localStorage.getItem('portfolio_contactMessages') || '[]');
+  let communityGroups = JSON.parse(localStorage.getItem('portfolio_groups') || '[{"name":"🎵 Music Club","admin":"System","members":[]},{"name":"💻 Tech Learners","admin":"System","members":[]}]');
+  let userProgress = JSON.parse(localStorage.getItem('portfolio_userProgress') || '{}');
+  let userCertificates = JSON.parse(localStorage.getItem('portfolio_userCertificates') || '{}');
+  let termsAccepted = localStorage.getItem('portfolio_termsAccepted') === 'true';
+
+  // 9 Core Skills including Leadership
+  const coreSkillsData = [
+    { id: "piano", icon: "fas fa-music", title: "Piano Performance", desc: "Master piano from basics to advanced", type: "music", image: "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=300", content: "<h3>🎹 Piano Course</h3><p>Learn: Beginner/Advanced Piano, Music Theory, Solfège, Composition.</p><button onclick='updateSkillProgress(\"piano\")' class='btn-3d'>Complete Lesson (+20%)</button>" },
+    { id: "webdev", icon: "fas fa-code", title: "Web Design", desc: "HTML, CSS, JavaScript, React", type: "tech", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=300", content: "<h3>💻 Web Design</h3><p>HTML, CSS, JS, React, Node.js.</p><button onclick='updateSkillProgress(\"webdev\")' class='btn-3d'>Complete (+20%)</button>" },
+    { id: "finearts", icon: "fas fa-paintbrush", title: "Fine Arts", desc: "Drawing, Painting, Digital Art", type: "arts", image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=300", content: "<h3>🎨 Fine Arts</h3><p>Drawing, Watercolor, Digital Art.</p><button onclick='updateSkillProgress(\"finearts\")' class='btn-3d'>Complete (+20%)</button>" },
+    { id: "journalism", icon: "fas fa-newspaper", title: "Journalism", desc: "News Writing, Digital Media", type: "tech", image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=300", content: "<h3>📰 Journalism</h3><p>News Writing, Podcasting.</p><button onclick='updateSkillProgress(\"journalism\")' class='btn-3d'>Complete (+20%)</button>" },
+    { id: "musictheory", icon: "fas fa-microphone-alt", title: "Music Theory", desc: "Solfège, Composition", type: "music", image: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=300", content: "<h3>🎵 Music Theory</h3><p>Solfège, Harmony, Ear Training.</p><button onclick='updateSkillProgress(\"musictheory\")' class='btn-3d'>Complete (+20%)</button>" },
+    { id: "teaching", icon: "fas fa-chalkboard-user", title: "Teaching", desc: "Methodology, Leadership", type: "tech", image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=300", content: "<h3>📚 Teaching</h3><p>Lesson Planning, EdTech.</p><button onclick='updateSkillProgress(\"teaching\")' class='btn-3d'>Complete (+20%)</button>" },
+    { id: "ict", icon: "fas fa-laptop-code", title: "ICT & Tech", desc: "Digital Literacy", type: "tech", image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300", content: "<h3>🖥️ ICT Fundamentals</h3><p>Computer Basics, Microsoft Office, Internet Skills.</p><button onclick='updateSkillProgress(\"ict\")' class='btn-3d'>Complete (+20%)</button>" },
+    { id: "languages", icon: "fas fa-language", title: "Languages", desc: "English, Kinyarwanda", type: "tech", image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=300", content: "<h3>🌍 Languages</h3><p>English Grammar, Kinyarwanda.</p><button onclick='updateSkillProgress(\"languages\")' class='btn-3d'>Complete (+20%)</button>" },
+    { id: "leadership", icon: "fas fa-handshake", title: "Leadership", desc: "Public Speaking, Team Management", type: "tech", image: "https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?w=300", content: "<h3>👑 Leadership Skills</h3><p>Public Speaking, Debate, Team Management, Conflict Resolution, Emotional Intelligence, Decision Making.</p><button onclick='updateSkillProgress(\"leadership\")' class='btn-3d'>Complete (+20%)</button>" }
+  ];
+
+  const booksData = [{title:"Clean Code", author:"Robert Martin", image:"https://images.unsplash.com/photo-1532012197267-da84d127e765?w=300"},{title:"Python Crash Course", author:"Eric Matthes", image:"https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=300"},{title:"The Art of Piano", author:"Charles Rosen", image:"https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=300"},{title:"Digital Marketing", author:"Ryan Deiss", image:"https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=300"}];
+  const exploreData = [{icon:"fas fa-video", title:"Video Editing"},{icon:"fas fa-chart-line", title:"Digital Marketing"},{icon:"fas fa-robot", title:"AI & Automation"},{icon:"fas fa-cloud-upload-alt", title:"Freelancing"},{icon:"fas fa-handshake", title:"Advanced Leadership"},{icon:"fas fa-camera", title:"Photography"}];
+
+  function saveAllData() { localStorage.setItem('portfolio_users', JSON.stringify(users)); localStorage.setItem('portfolio_profileViews', profileViews); localStorage.setItem('portfolio_forumPosts', JSON.stringify(forumPosts)); localStorage.setItem('portfolio_chatHistory', JSON.stringify(chatHistory)); localStorage.setItem('portfolio_contactMessages', JSON.stringify(contactMessages)); localStorage.setItem('portfolio_groups', JSON.stringify(communityGroups)); localStorage.setItem('portfolio_userProgress', JSON.stringify(userProgress)); localStorage.setItem('portfolio_userCertificates', JSON.stringify(userCertificates)); }
+  function loadCurrentUser() { const saved = localStorage.getItem('portfolio_current_user'); if(saved) { currentUser = JSON.parse(saved); if(!users.find(u=>u.email===currentUser.email)) users.push(currentUser); saveAllData(); } }
+  function saveCurrentUser() { if(currentUser) { localStorage.setItem('portfolio_current_user', JSON.stringify(currentUser)); const idx = users.findIndex(u=>u.email===currentUser.email); if(idx>=0) users[idx]=currentUser; else users.push(currentUser); saveAllData(); } }
+  function showAuthModal() { document.getElementById('authModal').style.display = 'flex'; }
+  function closeModal() { document.querySelectorAll('.modal').forEach(m=>m.style.display='none'); }
+  
+  document.getElementById('authForm')?.addEventListener('submit', (e) => {
+    e.preventDefault(); currentUser = { fullName: document.getElementById('fullName').value, email: document.getElementById('email').value, phone: document.getElementById('phone').value, country: document.getElementById('country').value, registeredAt: new Date().toISOString() };
+    const file = document.getElementById('profilePhoto').files[0]; if(file) { const reader = new FileReader(); reader.onload = (ev) => { currentUser.photo = ev.target.result; saveCurrentUser(); }; reader.readAsDataURL(file); }
+    saveCurrentUser(); document.getElementById('authModal').style.display = 'none'; updateUIForUser(); alert(`Welcome ${currentUser.fullName}!`);
+  });
+  
+  function updateUIForUser() { document.getElementById('authBtn').style.display = 'none'; document.getElementById('userNameDisplay').style.display = 'inline'; document.getElementById('userNameDisplay').innerHTML = `👤 ${currentUser.fullName}`; renderProfile(); updateDashboard(); profileViews++; localStorage.setItem('portfolio_profileViews', profileViews); }
+  function renderProfile() { if(!currentUser) return; document.getElementById('profileInfo').innerHTML = `${currentUser.photo?`<img src="${currentUser.photo}" class="profile-photo">`:'<i class="fas fa-user-circle" style="font-size:80px;display:block;"></i>'}<p><strong>${currentUser.fullName}</strong><br>${currentUser.email}<br>${currentUser.phone||'Not provided'}<br>${currentUser.country||'Not selected'}</p>`; }
+  function editProfile() { showAuthModal(); }
+  
+  function updateSkillProgress(skillId) { if(!currentUser) { alert('Login first!'); showAuthModal(); return; } let prog = userProgress[currentUser.email] || {}; let current = prog[skillId] || 0; if(current < 100) { prog[skillId] = Math.min(100, current + 20); userProgress[currentUser.email] = prog; saveAllData(); updateDashboard(); alert(`Progress: ${prog[skillId]}%`); if(prog[skillId]>=100) generateCertificate(skillId); } else alert('Course already completed!'); }
+  
+  function generateCertificate(skillId) { let certs = userCertificates[currentUser.email] || []; let skill = coreSkillsData.find(s=>s.id===skillId); if(!certs.find(c=>c.skillId===skillId)) { certs.push({ skillId, title: skill.title, type: skill.type, date: new Date().toLocaleDateString() }); userCertificates[currentUser.email] = certs; saveAllData(); updateDashboard(); alert(`🎉 Certificate earned for ${skill.title}!`); } }
+  
+  function showCertificate(skillTitle, skillType, userName) { let html = skillType === 'music' ? `<div style="background:#fdfbf7; color:#2e2520; padding:2rem; text-align:center; border:12mm solid #2e2520;"><div style="border:1px solid #c2a679; padding:1.5rem;"><h1 style="font-family:Playfair Display; font-size:28pt;">Certificate of Musical Accomplishment</h1><h2>${userName}</h2><p>completed <strong>${skillTitle}</strong><br>on ${new Date().toLocaleDateString()}</p><div style="border-top:1px solid #c2a679; width:200px; margin:1rem auto;"></div><p>Rwanda Tech Learning Hub</p></div></div>` : `<div style="background:#fff; color:#0f172a; padding:2rem; text-align:center; border:12mm solid #1e293b;"><div style="border:1px solid #cbd5e1; padding:1.5rem;"><h1 style="font-size:28pt;">Certificate of Completion</h1><h2 style="color:#0ea5e9;">${userName}</h2><p>completed <strong>${skillTitle}</strong><br>on ${new Date().toLocaleDateString()}</p><div style="border-top:1px solid #94a3b8; width:200px; margin:1rem auto;"></div><p>Rwanda Tech Learning Hub</p></div></div>`;
+    document.getElementById('certModalContent').innerHTML = html + `<button onclick="html2pdf().from(document.getElementById('certModalContent')).set({margin:0, filename:'certificate.pdf'}).save()" class="btn-3d">Download PDF</button><button onclick="closeModal()" class="btn-outline">Close</button>`;
+    document.getElementById('certModal').style.display = 'flex';
+  }
+  
+  function updateDashboard() { if(!currentUser) return; let prog = userProgress[currentUser.email] || {}; let avg = Object.values(prog).length ? Math.floor(Object.values(prog).reduce((a,b)=>a+b,0)/Object.values(prog).length) : 0; document.getElementById('profileViews').innerHTML = profileViews; document.getElementById('skillsProgress').innerHTML = `${avg}%`; document.getElementById('certificateCount').innerHTML = (userCertificates[currentUser.email]||[]).length; document.getElementById('myCoursesList').innerHTML = coreSkillsData.map(s => `<div class="stat-card"><h3>${s.title}</h3><div style="background:#333; border-radius:10px; height:8px;"><div style="width:${prog[s.id]||0}%; height:8px; background:#4d8eff; border-radius:10px;"></div></div><p>${prog[s.id]||0}%</p><button onclick="showCourseContent('${s.id}')" class="btn-glow">Learn</button></div>`).join(''); document.getElementById('myCertificatesList').innerHTML = (userCertificates[currentUser.email]||[]).map(c => `<div class="stat-card"><h3>${c.title}</h3><button onclick="showCertificate('${c.title}','${c.type}','${currentUser.fullName}')" class="btn-outline">View</button></div>`).join(''); const ctx = document.getElementById('activityChart')?.getContext('2d'); if(window.myChart) window.myChart.destroy(); if(ctx) window.myChart = new Chart(ctx, { type:'bar', data:{ labels:coreSkillsData.map(s=>s.title), datasets:[{ label:'Progress %', data:coreSkillsData.map(s=>prog[s.id]||0), backgroundColor:'#4d8eff' }] } }); }
+  
+  function showCourseContent(skillId) { let skill = coreSkillsData.find(s=>s.id===skillId); document.getElementById('courseModalContent').innerHTML = skill.content + `<button onclick="closeModal()" class="btn-outline">Close</button>`; document.getElementById('courseModal').style.display = 'flex'; }
+  function renderCoreSkills() { let container = document.getElementById('coreSkillsContent'); if(!currentUser) { container.innerHTML = `<div style="text-align:center; padding:3rem;"><i class="fas fa-lock" style="font-size:4rem;"></i><h2>Login Required</h2><button onclick="showAuthModal()" class="btn-3d">Login</button></div>`; return; } container.innerHTML = `<div class="skills-grid">${coreSkillsData.map(s=>`<div class="skill-card" onclick="showCourseContent('${s.id}')"><img src="${s.image}"><i class="${s.icon}"></i><h3>${s.title}</h3><p>${s.desc}</p><button class="btn-glow">Start</button></div>`).join('')}</div>`; }
+  
+  function handleJoinJourney() { if(!currentUser) { showAuthModal(); alert('Create an account first!'); } else { showPage('coreSkills'); alert(`Welcome ${currentUser.fullName}!`); } }
+  
+  function createCommunityGroup() { let name = document.getElementById('newGroupName')?.value; if(name && currentUser) { communityGroups.push({name, admin: currentUser.email, members: [currentUser.email]}); saveAllData(); renderCommunityGroups(); document.getElementById('newGroupName').value = ''; alert(`Group "${name}" created!`); } else if(!currentUser) { alert('Login first!'); showAuthModal(); } }
+  function renderCommunityGroups() { document.getElementById('groupsList').innerHTML = communityGroups.map(g => `<div class="group-card"><strong>${g.name}</strong>${g.admin === currentUser?.email ? ' 👑' : ''}<br><small>Members: ${g.members?.length||0}</small></div>`).join(''); }
+  function addForumPost() { let post = document.getElementById('newPost')?.value; if(post && currentUser) { forumPosts.unshift({ user: currentUser.fullName, message: post, date: new Date().toLocaleString() }); saveAllData(); renderForumPosts(); document.getElementById('newPost').value = ''; } else if(!currentUser) { alert('Login first!'); showAuthModal(); } }
+  function renderForumPosts() { let container = document.getElementById('forumPosts'); if(container) container.innerHTML = forumPosts.slice(0,10).map(p=>`<div class="stat-card"><strong>${p.user}:</strong> ${p.message}<br><small>${p.date}</small></div>`).join('') || '<div class="stat-card">Be first to post!</div>'; }
+  
+  function sendDirectMessage() { let msg = document.getElementById('messageText')?.value; if(msg) { let sender = currentUser ? currentUser.fullName : 'Guest'; window.open(`https://wa.me/250794204258?text=${encodeURIComponent(`From: ${sender}\n${msg}`)}`, '_blank'); alert('WhatsApp opened!'); } else alert('Type a message!'); }
+  function sendEmailMessage() { let msg = document.getElementById('messageText')?.value; if(msg) { let sender = currentUser ? currentUser.fullName : 'Guest'; window.location.href = `mailto:theonesteniyibigira6@gmail.com?subject=Message from ${sender}&body=${encodeURIComponent(msg)}`; alert('Email opened!'); } else alert('Type a message!'); }
+  
+  function acceptTerms() { localStorage.setItem('portfolio_termsAccepted', 'true'); termsAccepted = true; document.getElementById('agreeButton').style.display = 'none'; alert('Thank you!'); }
+  function renderPrivacyPage() { document.getElementById('privacyContent').innerHTML = `<h3>Privacy Policy</h3><p>Your data is stored locally. No third-party sharing.</p><h3>Terms</h3><p>Certificates are for personal achievement.</p>`; document.getElementById('agreeButton').style.display = termsAccepted ? 'none' : 'block'; }
+  
+  // ADMIN PANEL - Full Database
+  function showAdminLogin() { document.getElementById('adminPasswordModal').style.display = 'flex'; }
+  function verifyAdminPassword() { if(document.getElementById('adminPassword').value === ADMIN_PASSWORD) { adminLoggedIn = true; closeModal(); renderAdminPanel(); alert('Admin access granted!'); } else alert('Wrong password!'); }
+  
+  function renderAdminPanel() {
+    let container = document.getElementById('adminProtectedContent'); if(!container) return;
+    if(!adminLoggedIn) { container.innerHTML = `<div style="text-align:center; padding:3rem;"><i class="fas fa-shield-alt" style="font-size:4rem;"></i><h2>Admin Access Required</h2><button onclick="showAdminLogin()" class="btn-3d">Enter Password</button></div>`; return; }
+    
+    // Calculate certificate achievers
+    let certAchievers = []; for(let [email, certs] of Object.entries(userCertificates)) { let user = users.find(u=>u.email===email); if(user) certAchievers.push({ name: user.fullName, email, certificates: certs.length, details: certs }); }
+    
+    container.innerHTML = `
+      <div class="dashboard-stats"><div class="stat-card"><h3>Total Users</h3><h2>${users.length}</h2></div><div class="stat-card"><h3>Profile Views</h3><h2>${profileViews}</h2></div><div class="stat-card"><h3>Messages</h3><h2>${contactMessages.length}</h2></div><div class="stat-card"><h3>Chat Logs</h3><h2>${chatHistory.length}</h2></div></div>
+      
+      <h3><i class="fas fa-users"></i> All Users (${users.length})</h3>
+      <table class="admin-table"><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Country</th><th>Registered</th></tr></thead><tbody>${users.map(u=>`<tr><td>${u.fullName}</td><td>${u.email}</td><td>${u.phone||'—'}</td><td>${u.country||'—'}</td><td>${new Date(u.registeredAt).toLocaleDateString()}</td></tr>`).join('')}${users.length===0?'<tr><td colspan="5">No users</td></tr>':''}</tbody></table>
+      
+      <h3><i class="fas fa-chart-line"></i> Learning Progress & Certificate Achievers</h3>
+      <table class="admin-table"><thead><tr><th>User</th><th>Course Progress</th><th>Certificates Earned</th><th>Certificate Details</th></tr></thead><tbody>${users.map(u => { let prog = userProgress[u.email] || {}; let certs = userCertificates[u.email] || []; let progressHtml = Object.entries(prog).map(([id,p]) => `${coreSkillsData.find(s=>s.id===id)?.title || id}: ${p}%`).join('<br>') || 'No progress'; let certHtml = certs.map(c=>c.title).join(', ') || 'None'; return `<tr><td>${u.fullName}</td><td>${progressHtml}</td><td>${certs.length}</td><td>${certHtml}</td></tr>`; }).join('')}</tbody></table>
+      
+      <h3><i class="fas fa-comments"></i> AI Chat History (${chatHistory.length} messages)</h3>
+      <table class="admin-table"><thead><tr><th>User</th><th>Question</th><th>Response</th><th>Date</th></tr></thead><tbody>${chatHistory.slice(-30).reverse().map(c=>`<tr><td>${c.user}</td><td>${c.question.substring(0,50)}...</td><td>${c.response.substring(0,60)}...</td><td>${c.date}</td></tr>`).join('')}${chatHistory.length===0?'<tr><td colspan="4">No chat history</td></tr>':''}</tbody></table>
+      
+      <h3><i class="fas fa-envelope"></i> Contact Messages (${contactMessages.length})</h3>
+      <table class="admin-table"><thead><tr><th>Sender</th><th>Email</th><th>Message</th><th>Type</th><th>Date</th></tr></thead><tbody>${contactMessages.slice().reverse().map(m=>`<tr><td>${m.sender}</td><td>${m.senderEmail||'—'}</td><td>${m.message.substring(0,50)}...</td><td>${m.type||'Message'}</td><td>${m.date}</td></tr>`).join('')}${contactMessages.length===0?'<tr><td colspan="5">No messages</td></tr>':''}</tbody></table>
+      
+      <div style="margin-top:2rem;"><button onclick="exportAllData()" class="btn-glow"><i class="fas fa-download"></i> Export Full Database</button><button onclick="clearAllData()" class="btn-outline" style="margin-left:1rem;"><i class="fas fa-trash"></i> Clear All Data</button></div>
+    `;
+  }
+  
+  function exportAllData() { let data = { users, profileViews, forumPosts, chatHistory, contactMessages, communityGroups, userProgress, userCertificates }; let blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'}); let a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `rtlh_full_database_${new Date().toISOString().split('T')[0]}.json`; a.click(); }
+  function clearAllData() { if(confirm('⚠️ Delete ALL data permanently?')) { localStorage.clear(); location.reload(); } }
+  
+  function showPage(page) { document.querySelectorAll('.page').forEach(p=>p.style.display='none'); document.getElementById(page+'Page').style.display='block'; if(page==='dashboard') updateDashboard(); if(page==='account') renderProfile(); if(page==='admin') renderAdminPanel(); if(page==='coreSkills') renderCoreSkills(); if(page==='community') { renderCommunityGroups(); renderForumPosts(); } if(page==='privacy') renderPrivacyPage(); window.scrollTo(0,0); }
+  function toggleChat() { let w = document.getElementById('chatWindow'); w.style.display = w.style.display === 'flex' ? 'none' : 'flex'; }
+  
+  function renderExplore() { document.getElementById('exploreGrid').innerHTML = exploreData.map(e=>`<div class="explore-card"><i class="${e.icon}"></i><h3>${e.title}</h3><p>Learn with Theoneste</p></div>`).join(''); }
+  function renderBooks() { document.getElementById('booksGrid').innerHTML = booksData.map(b=>`<div class="book-card"><img src="${b.image}"><h3>${b.title}</h3><p>${b.author}</p><button class="btn-glow">Read</button></div>`).join(''); }
+  
+  // Simulate receiving chat messages from Jotform (optional, for admin tracking)
+  function addChatToHistory(user, question, response) { chatHistory.push({ user, question, response, date: new Date().toLocaleString() }); saveAllData(); }
+  
+  function init3D() { const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000), renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-bg'), alpha: true }); renderer.setSize(window.innerWidth, window.innerHeight); const group = new THREE.Group(); for(let i=0;i<2000;i++) { let starGeo = new THREE.BufferGeometry(); let pos = new Float32Array(1*3); pos[0]=(Math.random()-0.5)*400; pos[1]=(Math.random()-0.5)*250; pos[2]=(Math.random()-0.5)*200-50; starGeo.setAttribute('position', new THREE.BufferAttribute(pos,3)); group.add(new THREE.Points(starGeo, new THREE.PointsMaterial({ color:0x4d8eff, size:0.12 }))); } const symbols = ['♪','♫','🎵','🎶','💻','🖥️','🎹','🎨']; for(let i=0;i<120;i++) { let canvas = document.createElement('canvas'); canvas.width=64; canvas.height=64; let ctx = canvas.getContext('2d'); ctx.fillStyle = `hsl(${200+Math.random()*100},70%,60%)`; ctx.font='36px Arial'; ctx.fillText(symbols[i%symbols.length],12,48); let sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(canvas), transparent: true })); sprite.scale.set(0.5,0.5,1); sprite.position.set((Math.random()-0.5)*200, (Math.random()-0.5)*150, (Math.random()-0.5)*100-30); group.add(sprite); } scene.add(group); camera.position.z=70; function animate(){ requestAnimationFrame(animate); group.rotation.y+=0.001; group.rotation.x+=0.0005; renderer.render(scene,camera); } animate(); window.addEventListener('resize',()=>{ renderer.setSize(window.innerWidth,window.innerHeight); camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); }); }
+  
+  function init() { loadCurrentUser(); if(currentUser) updateUIForUser(); init3D(); renderCommunityGroups(); renderForumPosts(); renderExplore(); renderBooks(); window.onclick=(e)=>{ if(e.target.classList.contains('modal')) e.target.style.display='none'; }; }
+  init();
+</script>
+<script type="importmap">{ "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js" } }</script>
+<script type="module">import * as THREE from 'three'; window.THREE = THREE; if(typeof init3D === 'function') window.init3D = init3D;</script>
+</body>
+</html>
+```
