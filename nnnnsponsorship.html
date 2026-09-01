@@ -1,0 +1,1517 @@
+sponsorship.html
+
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+content="Sponsorship and Partnership Application — NIYIBIGIRA Theoneste">
+
+<title>Sponsor / Partner | NIYIBIGIRA Theoneste</title>
+
+<style>
+:root{
+    --blue:#075985;
+    --blue2:#0ea5e9;
+    --green:#087f5b;
+    --green2:#10b981;
+    --yellow:#f2c94c;
+    --dark:#031117;
+    --dark2:#061c23;
+    --card:rgba(255,255,255,.075);
+    --border:rgba(255,255,255,.14);
+    --text:#f1faf7;
+    --muted:#b9cfca;
+    --danger:#ff7676;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+    color:var(--text);
+    background:#031117;
+    line-height:1.7;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-10;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(1,15,20,.94),
+            rgba(3,64,61,.84),
+            rgba(2,37,65,.94)
+        );
+}
+
+#background{
+    position:fixed;
+    inset:0;
+    z-index:-9;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.bg{
+    position:absolute;
+    inset:-5%;
+    background-size:cover;
+    background-position:center;
+    opacity:0;
+    animation:bgMove 42s infinite;
+}
+
+.bg:nth-child(1){
+    background-image:url("https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=2200&q=80");
+}
+
+.bg:nth-child(2){
+    background-image:url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2200&q=80");
+    animation-delay:7s;
+}
+
+.bg:nth-child(3){
+    background-image:url("https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=2200&q=80");
+    animation-delay:14s;
+}
+
+.bg:nth-child(4){
+    background-image:url("https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=2200&q=80");
+    animation-delay:21s;
+}
+
+.bg:nth-child(5){
+    background-image:url("https://images.unsplash.com/photo-1524178232363-1fb2b075655?auto=format&fit=crop&w=2200&q=80");
+    animation-delay:28s;
+}
+
+.bg:nth-child(6){
+    background-image:url("https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=2200&q=80");
+    animation-delay:35s;
+}
+
+@keyframes bgMove{
+    0%,15%{
+        opacity:0;
+        transform:scale(1.08);
+    }
+    5%,12%{
+        opacity:.25;
+    }
+    20%,100%{
+        opacity:0;
+        transform:scale(1);
+    }
+}
+
+#background::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,8,12,.68),
+            rgba(0,17,23,.87)
+        );
+}
+
+.floating{
+    position:fixed;
+    inset:0;
+    z-index:-5;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+.float{
+    position:absolute;
+    font-size:42px;
+    opacity:.13;
+    animation:float 12s ease-in-out infinite;
+}
+
+.float:nth-child(1){left:5%;top:20%}
+.float:nth-child(2){left:88%;top:20%;animation-delay:2s}
+.float:nth-child(3){left:10%;top:70%;animation-delay:4s}
+.float:nth-child(4){left:80%;top:72%;animation-delay:6s}
+.float:nth-child(5){left:45%;top:13%;animation-delay:1s}
+.float:nth-child(6){left:55%;top:84%;animation-delay:3s}
+.float:nth-child(7){left:28%;top:42%;animation-delay:5s}
+.float:nth-child(8){left:68%;top:47%;animation-delay:7s}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0) rotate(-4deg);
+    }
+    50%{
+        transform:translateY(-30px) rotate(6deg);
+    }
+}
+
+.nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:1000;
+    background:rgba(2,13,18,.88);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+}
+
+.nav-inner{
+    max-width:1250px;
+    margin:auto;
+    padding:13px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.brand{
+    font-weight:900;
+    font-size:18px;
+}
+
+.brand span{
+    color:var(--yellow);
+}
+
+.nav-links{
+    display:flex;
+    gap:8px;
+}
+
+.nav-links a{
+    padding:8px 13px;
+    border-radius:30px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    background:linear-gradient(90deg,var(--green),var(--blue));
+    transform:translateY(-3px);
+}
+
+.menu{
+    display:none;
+    background:none;
+    border:0;
+    color:white;
+    font-size:28px;
+}
+
+.hero{
+    min-height:75vh;
+    padding:150px 6% 80px;
+    display:grid;
+    place-items:center;
+    text-align:center;
+}
+
+.hero-content{
+    max-width:950px;
+}
+
+.badge{
+    display:inline-block;
+    padding:7px 15px;
+    border-radius:50px;
+    background:#ffffff10;
+    border:1px solid #ffffff20;
+    color:#bff5e5;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(42px,7vw,78px);
+    line-height:1.08;
+}
+
+.hero h1 span{
+    color:var(--yellow);
+}
+
+.hero p{
+    max-width:800px;
+    margin:20px auto;
+    color:var(--muted);
+    font-size:18px;
+}
+
+.typing{
+    color:#a9e7d5;
+    font-size:24px;
+    min-height:42px;
+}
+
+.container{
+    max-width:1150px;
+    margin:auto;
+}
+
+section{
+    padding:90px 6%;
+    scroll-margin-top:80px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.title h2{
+    font-size:40px;
+}
+
+.title p{
+    color:var(--muted);
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 20px 55px rgba(0,0,0,.18);
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-7px);
+    border-color:#f2c94c66;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
+}
+
+.info-card h3{
+    color:#c8f8e9;
+    margin-bottom:8px;
+}
+
+.info-card p{
+    color:var(--muted);
+}
+
+.form-card{
+    max-width:1000px;
+    margin:auto;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:700;
+}
+
+.required{
+    color:var(--yellow);
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:14px 16px;
+    background:#020d12cc;
+    border:1px solid #ffffff20;
+    border-radius:13px;
+    color:white;
+    outline:none;
+    transition:.3s;
+    font:inherit;
+}
+
+select option{
+    background:#061c23;
+    color:white;
+}
+
+textarea{
+    min-height:140px;
+    resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:var(--yellow);
+    box-shadow:0 0 0 3px #f2c94c18;
+}
+
+.group{
+    margin-top:24px;
+}
+
+.check-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:12px;
+}
+
+.check{
+    padding:12px;
+    border:1px solid #ffffff14;
+    border-radius:13px;
+    background:#ffffff06;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.check:hover{
+    background:#ffffff0d;
+    transform:translateY(-2px);
+}
+
+.check input{
+    width:auto;
+    margin-right:8px;
+}
+
+.btn{
+    display:inline-block;
+    padding:13px 21px;
+    margin:6px;
+    border-radius:40px;
+    border:1px solid #ffffff20;
+    background:#ffffff0d;
+    color:white;
+    cursor:pointer;
+    font-weight:700;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 30px #0005;
+}
+
+.primary{
+    background:linear-gradient(90deg,var(--green),var(--blue));
+}
+
+.yellow{
+    background:linear-gradient(90deg,#b58b00,#f2c94c);
+    color:#111;
+}
+
+.actions{
+    text-align:center;
+    margin-top:35px;
+}
+
+.notice{
+    padding:17px;
+    border-left:4px solid var(--yellow);
+    background:#f2c94c0b;
+    border-radius:10px;
+    color:var(--muted);
+}
+
+.success{
+    display:none;
+    padding:22px;
+    margin-top:25px;
+    border-radius:18px;
+    background:#087f5b22;
+    border:1px solid #10b98155;
+    text-align:center;
+}
+
+.contact{
+    text-align:center;
+}
+
+.contact a{
+    color:#a9e7d5;
+}
+
+footer{
+    text-align:center;
+    padding:50px 6%;
+    background:#020a0e;
+    color:var(--muted);
+}
+
+.progress{
+    position:fixed;
+    top:0;
+    left:0;
+    height:4px;
+    width:0;
+    background:linear-gradient(90deg,var(--green),var(--yellow),var(--blue));
+    z-index:3000;
+}
+
+@media(max-width:850px){
+
+    .nav-links{
+        display:none;
+        position:absolute;
+        top:65px;
+        left:0;
+        right:0;
+        background:#031117;
+        padding:15px;
+        flex-direction:column;
+    }
+
+    .nav-links.open{
+        display:flex;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    section{
+        padding:70px 5%;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation:none!important;
+        transition:none!important;
+        scroll-behavior:auto!important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div id="background">
+    <div class="bg"></div>
+    <div class="bg"></div>
+    <div class="bg"></div>
+    <div class="bg"></div>
+    <div class="bg"></div>
+    <div class="bg"></div>
+</div>
+
+<div class="floating">
+    <span class="float">💻</span>
+    <span class="float">&lt;/&gt;</span>
+    <span class="float">🔐</span>
+    <span class="float">🖥️</span>
+    <span class="float">⌨️</span>
+    <span class="float">🎹</span>
+    <span class="float">🎵</span>
+    <span class="float">👑</span>
+</div>
+
+<nav class="nav">
+<div class="nav-inner">
+
+<a class="brand" href="index.html">
+    NIYIBIGIRA <span>Theoneste</span>
+</a>
+
+<button class="menu" onclick="toggleMenu()">☰</button>
+
+<div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="#about">Sponsorship</a>
+    <a href="#application">Apply</a>
+    <a href="#opportunities">Opportunities</a>
+    <a href="#contact">Contact</a>
+</div>
+
+</div>
+</nav>
+
+
+<section class="hero" id="about">
+
+<div class="hero-content">
+
+<div class="badge">
+🤝 Sponsorship • Partnership • Collaboration
+</div>
+
+<h1>
+Support <span>Ideas</span> That Create Impact
+</h1>
+
+<div class="typing" id="typing"></div>
+
+<p>
+Welcome to the official sponsorship and partnership page of
+<strong>NIYIBIGIRA Theoneste</strong>.
+Your support can help transform ideas in technology, education,
+innovation, creativity and music into meaningful projects and
+opportunities.
+</p>
+
+<a href="#application" class="btn primary">
+Become a Sponsor
+</a>
+
+<a href="#opportunities" class="btn">
+Explore Opportunities
+</a>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<div class="title">
+<h2>Why Sponsor My Work?</h2>
+<p>Your support can contribute to practical projects and creative development.</p>
+</div>
+
+<div class="info-grid">
+
+<div class="card info-card">
+<h3>💻 Technology</h3>
+<p>
+Support software development, websites, AI projects,
+digital tools and technological innovation.
+</p>
+</div>
+
+<div class="card info-card">
+<h3>🎓 Education</h3>
+<p>
+Help develop learning resources, technology education
+and digital learning opportunities.
+</p>
+</div>
+
+<div class="card info-card">
+<h3>🤖 AI Innovation</h3>
+<p>
+Support educational AI, experimentation, research,
+automation and responsible AI development.
+</p>
+</div>
+
+<div class="card info-card">
+<h3>🎹 Music & Arts</h3>
+<p>
+Support piano, music, arts, creativity, performances
+and creative education.
+</p>
+</div>
+
+<div class="card info-card">
+<h3>🌍 Community</h3>
+<p>
+Support initiatives that share knowledge and create
+opportunities for learners and communities.
+</p>
+</div>
+
+<div class="card info-card">
+<h3>🚀 Innovation</h3>
+<p>
+Help turn promising ideas and prototypes into useful
+real-world projects.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="opportunities">
+
+<div class="container">
+
+<div class="title">
+<h2>Sponsorship Opportunities</h2>
+<p>Select what best describes the kind of support you are interested in.</p>
+</div>
+
+<div class="info-grid">
+
+<div class="card">
+<h3>💰 Financial Sponsorship</h3>
+<p>
+Direct financial support for projects, development,
+education, infrastructure or creative activities.
+</p>
+</div>
+
+<div class="card">
+<h3>💻 Technology Sponsorship</h3>
+<p>
+Computers, equipment, hosting, software, cloud services,
+internet resources or other technology.
+</p>
+</div>
+
+<div class="card">
+<h3>🎓 Educational Sponsorship</h3>
+<p>
+Support for courses, learning materials, training,
+workshops and educational programs.
+</p>
+</div>
+
+<div class="card">
+<h3>🤝 Strategic Partnership</h3>
+<p>
+Long-term collaboration between individuals,
+organizations, institutions or companies.
+</p>
+</div>
+
+<div class="card">
+<h3>🧠 Mentorship</h3>
+<p>
+Professional guidance, technical mentorship,
+business mentorship or creative mentorship.
+</p>
+</div>
+
+<div class="card">
+<h3>📢 Project Promotion</h3>
+<p>
+Help introduce projects, educational initiatives,
+events or creative work to wider audiences.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="application">
+
+<div class="container">
+
+<div class="title">
+
+<h2>Sponsorship / Partnership Application</h2>
+
+<p>
+Please provide accurate information so I can understand
+who you are, what you represent and how we can work together.
+</p>
+
+</div>
+
+
+<div class="card form-card">
+
+<div class="notice">
+
+<strong>Privacy & transparency:</strong>
+Please do not submit passwords, banking PINs, highly sensitive
+personal information or unnecessary confidential information.
+Only provide information relevant to the proposed sponsorship
+or partnership.
+
+</div>
+
+
+<form id="sponsorForm">
+
+
+<div class="group">
+
+<h3>1. Your Identity</h3>
+
+</div>
+
+<div class="form-grid">
+
+<div>
+<label>Full Name <span class="required">*</span></label>
+<input type="text" name="fullName" required
+placeholder="Your full name">
+</div>
+
+<div>
+<label>Preferred Name</label>
+<input type="text" name="preferredName"
+placeholder="Name you prefer to be called">
+</div>
+
+<div>
+<label>Your Role / Position <span class="required">*</span></label>
+<input type="text" name="role" required
+placeholder="e.g. CEO, Director, Student, Investor">
+</div>
+
+<div>
+<label>Type of Sponsor <span class="required">*</span></label>
+
+<select name="sponsorType" required>
+
+<option value="">Select one</option>
+<option>Individual</option>
+<option>Company</option>
+<option>Startup</option>
+<option>NGO / Non-profit</option>
+<option>School / University</option>
+<option>Government / Public Institution</option>
+<option>Investor</option>
+<option>Community Organization</option>
+<option>Faith-based Organization</option>
+<option>Media Organization</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+<div>
+<label>Country <span class="required">*</span></label>
+<input type="text" name="country" required
+placeholder="Country">
+</div>
+
+<div>
+<label>City / Location</label>
+<input type="text" name="city"
+placeholder="City / District">
+</div>
+
+</div>
+
+
+<div class="group">
+
+<h3>2. Organization Information</h3>
+
+</div>
+
+<div class="form-grid">
+
+<div>
+<label>Organization / Company Name</label>
+<input type="text" name="organization"
+placeholder="If applicable">
+</div>
+
+<div>
+<label>Organization Type</label>
+<input type="text" name="organizationType"
+placeholder="Company, NGO, school, institution...">
+</div>
+
+<div>
+<label>Official Website</label>
+<input type="url" name="website"
+placeholder="https://example.com">
+</div>
+
+<div>
+<label>Organization Email</label>
+<input type="email" name="organizationEmail"
+placeholder="official@example.com">
+</div>
+
+<div class="full">
+<label>
+Describe Yourself / Your Organization
+<span class="required">*</span>
+</label>
+
+<textarea name="description" required
+placeholder="Tell me who you are, what you do, your mission, your interests and what you represent..."></textarea>
+
+</div>
+
+</div>
+
+
+<div class="group">
+
+<h3>3. Contact Information</h3>
+
+</div>
+
+<div class="form-grid">
+
+<div>
+<label>Email <span class="required">*</span></label>
+<input type="email" name="email" required
+placeholder="your@email.com">
+</div>
+
+<div>
+<label>Phone Number</label>
+<input type="tel" name="phone"
+placeholder="+250 ...">
+</div>
+
+<div>
+<label>WhatsApp</label>
+<input type="tel" name="whatsapp"
+placeholder="+250 ...">
+</div>
+
+<div>
+<label>Preferred Contact Method</label>
+
+<select name="contactMethod">
+
+<option>Email</option>
+<option>Phone</option>
+<option>WhatsApp</option>
+<option>Video Meeting</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+<div>
+<label>LinkedIn / Professional Profile</label>
+<input type="url" name="linkedin"
+placeholder="Professional profile URL">
+</div>
+
+<div>
+<label>Social Media / Other Profile</label>
+<input type="url" name="social"
+placeholder="Professional social profile">
+</div>
+
+</div>
+
+
+<div class="group">
+
+<h3>4. What Would You Like to Support?</h3>
+
+</div>
+
+<div class="check-grid">
+
+<label class="check">
+<input type="checkbox" name="support" value="Technology">
+Technology
+</label>
+
+<label class="check">
+<input type="checkbox" name="support" value="Education">
+Education
+</label>
+
+<label class="check">
+<input type="checkbox" name="support" value="AI">
+AI
+</label>
+
+<label class="check">
+<input type="checkbox" name="support" value="Rwanda Tech Learning Hub">
+Rwanda Tech Learning Hub
+</label>
+
+<label class="check">
+<input type="checkbox" name="support" value="Music">
+Music & Piano
+</label>
+
+<label class="check">
+<input type="checkbox" name="support" value="Arts">
+Arts & Design
+</label>
+
+<label class="check">
+<input type="checkbox" name="support" value="Community">
+Community Development
+</label>
+
+<label class="check">
+<input type="checkbox" name="support" value="Innovation">
+Innovation / Research
+</label>
+
+<label class="check">
+<input type="checkbox" name="support" value="Equipment">
+Equipment
+</label>
+
+<label class="check">
+<input type="checkbox" name="support" value="Training">
+Training / Mentorship
+</label>
+
+<label class="check">
+<input type="checkbox" name="support" value="Other">
+Other
+</label>
+
+</div>
+
+
+<div class="group">
+
+<h3>5. Sponsorship Type</h3>
+
+</div>
+
+<div class="form-grid">
+
+<div>
+
+<label>Type of Support <span class="required">*</span></label>
+
+<select name="supportType" required>
+
+<option value="">Select</option>
+<option>Financial</option>
+<option>Equipment</option>
+<option>Software / Technology</option>
+<option>Cloud / Hosting</option>
+<option>Educational Materials</option>
+<option>Mentorship</option>
+<option>Professional Services</option>
+<option>Training</option>
+<option>Media / Promotion</option>
+<option>Strategic Partnership</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>Expected Sponsorship Value / Budget</label>
+
+<input type="text"
+name="budget"
+placeholder="Optional — e.g. estimated amount/value">
+
+</div>
+
+<div>
+
+<label>Sponsorship Duration</label>
+
+<select name="duration">
+
+<option>One-time</option>
+<option>Short-term</option>
+<option>6 months</option>
+<option>1 year</option>
+<option>Long-term</option>
+<option>To be discussed</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>Preferred Start Date</label>
+
+<input type="date" name="startDate">
+
+</div>
+
+</div>
+
+
+<div class="group">
+
+<h3>6. Your Sponsorship Proposal</h3>
+
+</div>
+
+<div class="form-grid">
+
+<div class="full">
+
+<label>
+What would you like to sponsor?
+<span class="required">*</span>
+</label>
+
+<textarea name="proposal" required
+placeholder="Describe what you would like to support and what kind of contribution you are proposing..."></textarea>
+
+</div>
+
+<div class="full">
+
+<label>
+Why are you interested in supporting this work?
+</label>
+
+<textarea name="motivation"
+placeholder="Tell me what motivates your interest..."></textarea>
+
+</div>
+
+<div class="full">
+
+<label>
+What do you expect from the partnership?
+</label>
+
+<textarea name="expectations"
+placeholder="Describe your expectations, goals or desired outcomes..."></textarea>
+
+</div>
+
+<div class="full">
+
+<label>
+What can you contribute beyond sponsorship?
+</label>
+
+<textarea name="additionalContribution"
+placeholder="Mentorship, networking, technology, expertise, promotion, training, etc."></textarea>
+
+</div>
+
+</div>
+
+
+<div class="group">
+
+<h3>7. Partnership & Visibility</h3>
+
+</div>
+
+<div class="form-grid">
+
+<div>
+
+<label>Would you like public recognition?</label>
+
+<select name="recognition">
+
+<option>Yes</option>
+<option>No</option>
+<option>Discuss first</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>Would you like your organization listed as a partner?</label>
+
+<select name="listing">
+
+<option>Yes</option>
+<option>No</option>
+<option>Discuss first</option>
+
+</select>
+
+</div>
+
+<div class="full">
+
+<label>
+Additional Information
+</label>
+
+<textarea name="additionalInfo"
+placeholder="Anything else you would like me to know..."></textarea>
+
+</div>
+
+</div>
+
+
+<div class="group">
+
+<h3>8. Declaration</h3>
+
+</div>
+
+<label class="check">
+
+<input type="checkbox" required>
+
+I confirm that the information I have provided is accurate
+to the best of my knowledge and that I am submitting this
+application voluntarily.
+
+</label>
+
+
+<div class="actions">
+
+<button type="submit" class="btn primary">
+Submit Sponsorship Application
+</button>
+
+<a href="mailto:theonesteniyibigira6@gmail.com"
+class="btn yellow">
+Email Me Directly
+</a>
+
+<a href="https://wa.me/250794204258"
+target="_blank"
+class="btn">
+WhatsApp
+</a>
+
+</div>
+
+
+<div class="success" id="success">
+
+<h2>✅ Application Prepared Successfully</h2>
+
+<p>
+Thank you for your interest in supporting or partnering
+with NIYIBIGIRA Theoneste.
+</p>
+
+<p>
+Your email application has been prepared. Please complete
+the email sending step in your email application.
+</p>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="contact">
+
+<div class="container">
+
+<div class="title">
+
+<h2>Direct Contact</h2>
+
+<p>
+For sponsorship, partnership and collaboration discussions.
+</p>
+
+</div>
+
+<div class="card contact">
+
+<h3>NIYIBIGIRA Theoneste</h3>
+
+<p>
+Musician • Pianist • Developer • Creator • Technology Educator
+</p>
+
+<p>
+📧
+<a href="mailto:theonesteniyibigira6@gmail.com">
+theonesteniyibigira6@gmail.com
+</a>
+</p>
+
+<p>
+📞
+<a href="tel:+250794204258">
++250 794 204 258
+</a>
+</p>
+
+<p>
+💬
+<a href="https://wa.me/250794204258" target="_blank">
+WhatsApp: +250 794 204 258
+</a>
+</p>
+
+<br>
+
+<a class="btn primary"
+href="mailto:theonesteniyibigira6@gmail.com?subject=Sponsorship%20Inquiry">
+Send Sponsorship Email
+</a>
+
+<a class="btn"
+href="index.html">
+← Return to Portfolio
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>
+© <span id="year"></span> NIYIBIGIRA Theoneste
+</p>
+
+<p>
+Learn • Create • Empower
+</p>
+
+</footer>
+
+
+<script>
+
+/* Mobile navigation */
+function toggleMenu(){
+
+    document
+    .getElementById("navLinks")
+    .classList
+    .toggle("open");
+
+}
+
+
+/* Hero typing */
+const words=[
+    "Support technology.",
+    "Support education.",
+    "Support innovation.",
+    "Support creativity.",
+    "Support music.",
+    "Support the next generation."
+];
+
+let wordIndex=0;
+let charIndex=0;
+let deleting=false;
+
+function typing(){
+
+    const element=document.getElementById("typing");
+    const word=words[wordIndex];
+
+    if(!deleting){
+
+        element.textContent=word.substring(0,charIndex+1);
+        charIndex++;
+
+        if(charIndex===word.length){
+
+            deleting=true;
+            setTimeout(typing,1300);
+            return;
+
+        }
+
+    }else{
+
+        element.textContent=word.substring(0,charIndex-1);
+        charIndex--;
+
+        if(charIndex===0){
+
+            deleting=false;
+            wordIndex=(wordIndex+1)%words.length;
+
+        }
+
+    }
+
+    setTimeout(typing,deleting?45:75);
+
+}
+
+typing();
+
+
+/* Scroll progress */
+function updateProgress(){
+
+    const total=
+        document.documentElement.scrollHeight-
+        window.innerHeight;
+
+    const percentage=
+        total>0?
+        (window.scrollY/total)*100:
+        0;
+
+    document.getElementById("progress")
+    .style.width=percentage+"%";
+
+}
+
+window.addEventListener(
+    "scroll",
+    updateProgress,
+    {passive:true}
+);
+
+updateProgress();
+
+
+/* Sponsorship form */
+document
+.getElementById("sponsorForm")
+.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+    const form=new FormData(this);
+
+    const support=
+        [...document.querySelectorAll(
+            'input[name="support"]:checked'
+        )]
+        .map(x=>x.value)
+        .join(", ");
+
+    const subject=
+        "Sponsorship / Partnership Application — "+
+        form.get("fullName");
+
+    const body=`
+
+SPONSORSHIP / PARTNERSHIP APPLICATION
+
+IDENTITY
+Full Name: ${form.get("fullName")}
+Preferred Name: ${form.get("preferredName")}
+Role / Position: ${form.get("role")}
+Sponsor Type: ${form.get("sponsorType")}
+Country: ${form.get("country")}
+City / Location: ${form.get("city")}
+
+ORGANIZATION
+Organization: ${form.get("organization")}
+Organization Type: ${form.get("organizationType")}
+Website: ${form.get("website")}
+Organization Email: ${form.get("organizationEmail")}
+
+DESCRIPTION
+${form.get("description")}
+
+CONTACT
+Email: ${form.get("email")}
+Phone: ${form.get("phone")}
+WhatsApp: ${form.get("whatsapp")}
+Preferred Contact: ${form.get("contactMethod")}
+LinkedIn: ${form.get("linkedin")}
+Social Profile: ${form.get("social")}
+
+AREAS TO SUPPORT
+${support}
+
+SPONSORSHIP
+Support Type: ${form.get("supportType")}
+Estimated Value / Budget: ${form.get("budget")}
+Duration: ${form.get("duration")}
+Preferred Start Date: ${form.get("startDate")}
+
+PROPOSAL
+${form.get("proposal")}
+
+MOTIVATION
+${form.get("motivation")}
+
+EXPECTATIONS
+${form.get("expectations")}
+
+ADDITIONAL CONTRIBUTION
+${form.get("additionalContribution")}
+
+PARTNERSHIP VISIBILITY
+Recognition: ${form.get("recognition")}
+Listed as Partner: ${form.get("listing")}
+
+ADDITIONAL INFORMATION
+${form.get("additionalInfo")}
+
+Submitted through the NIYIBIGIRA Theoneste sponsorship portal.
+`;
+
+    const mailto=
+        "mailto:theonesteniyibigira6@gmail.com"+
+        "?subject="+encodeURIComponent(subject)+
+        "&body="+encodeURIComponent(body);
+
+    document.getElementById("success").style.display="block";
+
+    window.location.href=mailto;
+
+});
+
+
+/* Close mobile menu after clicking */
+document
+.querySelectorAll(".nav-links a")
+.forEach(link=>{
+
+    link.addEventListener("click",()=>{
+
+        document
+        .getElementById("navLinks")
+        .classList
+        .remove("open");
+
+    });
+
+});
+
+
+/* Current year */
+document.getElementById("year").textContent=
+new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
+```
